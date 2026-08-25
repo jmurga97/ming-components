@@ -25,6 +25,10 @@ Consumers such as the `qmenut` and `roncalphoto` repositories install it from th
    bun add @jmurga97/components
    ```
 
+Every push to `main` also publishes a dev build under the `dev` dist-tag with a version like
+`1.0.2-dev.42.a1b2c3d`. Install it with `bun add @jmurga97/components@dev`. Tagged releases stay on
+the `latest` tag.
+
 Before the first publication, install a verified release tarball instead:
 
 ```bash
