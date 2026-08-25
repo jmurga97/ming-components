@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: release-main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect automated commit
+        id: guard
+        env:
+          ACTOR: ${{ github.actor }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          if [ "${ACTOR}" = "github-actions[bot]" ] || printf '%s' "${COMMIT_MESSAGE}" | grep -q '\[skip release\]'; then
+            echo 'Automated release commit detected; skipping.'
+            echo 'skip=true' >> "${GITHUB_OUTPUT}"
+          fi
+
+      - uses: oven-sh/setup-bun@v2
+        if: steps.guard.outputs.skip != 'true'
+        with:
+          bun-version: 1.3.6
+
+      - uses: actions/setup-node@v4
+        if: steps.guard.outputs.skip != 'true'
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: '@jmurga97'
+
+      - name: Install dependencies
+        if: steps.guard.outputs.skip != 'true'
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright browser
+        if: steps.guard.outputs.skip != 'true'
+        run: bunx playwright install --with-deps chromium
+
+      - name: Lint, typecheck and test
+        if: steps.guard.outputs.skip != 'true'
+        run: bun run lint && bun run check && bun run test
+
+      - name: Build and verify package
+        if: steps.guard.outputs.skip != 'true'
+        run: bun run package:check
+
+      - name: Compute next version
+        if: steps.guard.outputs.skip != 'true'
+        id: version
+        run: |
+          next="$(node -p "const [major, minor, patch] = require('./package.json').version.split('.').map(Number); [major, minor, patch + 1].join('.')")"
+          if git ls-remote --exit-code --tags origin "refs/tags/v${next}" > /dev/null 2>&1; then
+            echo "Tag v${next} already exists; nothing to release."
+            echo 'done=true' >> "${GITHUB_OUTPUT}"
+          else
+            echo "version=${next}" >> "${GITHUB_OUTPUT}"
+          fi
+
+      - name: Apply version and scope
+        if: steps.guard.outputs.skip != 'true' && steps.version.outputs.version != ''
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.name = '@jmurga97/components';
+          pkg.version = process.env.RELEASE_VERSION;
+          fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);
+          NODE
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+
+      - name: Publish to GitHub Packages
+        if: steps.guard.outputs.skip != 'true' && steps.version.outputs.version != ''
+        run: npm publish --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and tag release
+        if: steps.guard.outputs.skip != 'true' && steps.version.outputs.version != ''
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package.json
+          git commit -m "chore(release): v${RELEASE_VERSION} [skip release]"
+          git tag "v${RELEASE_VERSION}"
+          git push origin HEAD:main "refs/tags/v${RELEASE_VERSION}"
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
