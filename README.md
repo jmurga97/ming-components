@@ -5,16 +5,30 @@ Operations**: calm density, semantic color, flat surfaces and visible state.
 
 ## Installation
 
-After the first public release:
+The library is published to GitHub Packages as `@jmurga97/components` whenever a `v*` tag is pushed.
+Consumers such as the `qmenut` and `roncalphoto` repositories install it from there.
+
+1. Create a classic personal access token with the `read:packages` scope. The package is public, so
+   no per-user grant on this repository is needed; the token itself is still required because the
+   GitHub Packages npm registry always authenticates installs.
+2. Configure the registry in a `.npmrc` at the consuming project root:
+
+   ```
+   @jmurga97:registry=https://npm.pkg.github.com
+   //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+   always-auth=true
+   ```
+
+3. Provide the token as `NPM_TOKEN` in your shell or CI secrets, then install:
+
+   ```bash
+   bun add @jmurga97/components
+   ```
+
+Before the first publication, install a verified release tarball instead:
 
 ```bash
-bun add @ming/components@1.0.0
-```
-
-Before publication, install the verified release tarball instead:
-
-```bash
-bun add /absolute/path/to/ming-components-1.0.0.tgz
+bun add /absolute/path/to/ming-components-1.0.2.tgz
 ```
 
 React and React DOM are peer dependencies. The package is React-only and does not register custom
@@ -26,10 +40,10 @@ Import the stylesheet once at the application entry point. Components can come f
 barrel or an explicit subpath.
 
 ```tsx
-import { Field } from '@ming/components';
-import { Button } from '@ming/components/button';
-import { Input } from '@ming/components/input';
-import '@ming/components/styles.css';
+import { Field } from '@jmurga97/components';
+import { Button } from '@jmurga97/components/button';
+import { Input } from '@jmurga97/components/input';
+import '@jmurga97/components/styles.css';
 
 export function Settings(): React.JSX.Element {
   return (
@@ -62,12 +76,12 @@ The application owns persistence and the pre-hydration theme script. Components 
 
 ## Exports
 
-Every component is available from `@ming/components` and from a kebab-case subpath. Examples:
+Every component is available from `@jmurga97/components` and from a kebab-case subpath. Examples:
 
 ```ts
-import { DropdownMenu } from '@ming/components/dropdown-menu';
-import { ResourceTable } from '@ming/components/resource-table';
-import { Select } from '@ming/components/select';
+import { DropdownMenu } from '@jmurga97/components/dropdown-menu';
+import { ResourceTable } from '@jmurga97/components/resource-table';
+import { Select } from '@jmurga97/components/select';
 ```
 
 Available component subpaths are `app-shell`, `badge`, `bulk-actions`, `button`, `checkbox`,
