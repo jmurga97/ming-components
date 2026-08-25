@@ -1,0 +1,21 @@
+{
+  "name": "ming-components-vite-consumer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && vite build"
+  },
+  "dependencies": {
+    "@ming/components": "workspace:*",
+    "@vitejs/plugin-react": "6.0.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "typescript": "6.0.3",
+    "vite": "8.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
+  }
+}

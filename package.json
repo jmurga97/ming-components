@@ -1,0 +1,195 @@
+{
+  "name": "@ming/components",
+  "version": "1.0.2",
+  "description": "React components for quiet, accessible operational interfaces.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "docs",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./badge": {
+      "types": "./dist/badge.d.ts",
+      "import": "./dist/badge.js"
+    },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js"
+    },
+    "./checkbox": {
+      "types": "./dist/checkbox.d.ts",
+      "import": "./dist/checkbox.js"
+    },
+    "./cn": {
+      "types": "./dist/cn.d.ts",
+      "import": "./dist/cn.js"
+    },
+    "./confirm-action": {
+      "types": "./dist/confirm_action.d.ts",
+      "import": "./dist/confirm_action.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/dropdown_menu.d.ts",
+      "import": "./dist/dropdown_menu.js"
+    },
+    "./field": {
+      "types": "./dist/field.d.ts",
+      "import": "./dist/field.js"
+    },
+    "./form-field": {
+      "types": "./dist/form_field.d.ts",
+      "import": "./dist/form_field.js"
+    },
+    "./inline-message": {
+      "types": "./dist/inline_message.d.ts",
+      "import": "./dist/inline_message.js"
+    },
+    "./input": {
+      "types": "./dist/input.d.ts",
+      "import": "./dist/input.js"
+    },
+    "./label": {
+      "types": "./dist/label.d.ts",
+      "import": "./dist/label.js"
+    },
+    "./nav-list": {
+      "types": "./dist/nav_list.d.ts",
+      "import": "./dist/nav_list.js"
+    },
+    "./search-field": {
+      "types": "./dist/search_field.d.ts",
+      "import": "./dist/search_field.js"
+    },
+    "./select": {
+      "types": "./dist/select.d.ts",
+      "import": "./dist/select.js"
+    },
+    "./sidebar-nav": {
+      "types": "./dist/sidebar_nav.d.ts",
+      "import": "./dist/sidebar_nav.js"
+    },
+    "./status-region": {
+      "types": "./dist/status_region.d.ts",
+      "import": "./dist/status_region.js"
+    },
+    "./status-text": {
+      "types": "./dist/status_text.d.ts",
+      "import": "./dist/status_text.js"
+    },
+    "./switch": {
+      "types": "./dist/switch.d.ts",
+      "import": "./dist/switch.js"
+    },
+    "./textarea": {
+      "types": "./dist/textarea.d.ts",
+      "import": "./dist/textarea.js"
+    },
+    "./app-shell": {
+      "types": "./dist/app_shell.d.ts",
+      "import": "./dist/app_shell.js"
+    },
+    "./resource-table": {
+      "types": "./dist/resource_table.d.ts",
+      "import": "./dist/resource_table.js"
+    },
+    "./bulk-actions": {
+      "types": "./dist/bulk_actions.d.ts",
+      "import": "./dist/bulk_actions.js"
+    },
+    "./media-browser": {
+      "types": "./dist/media_browser.d.ts",
+      "import": "./dist/media_browser.js"
+    },
+    "./overview-panel": {
+      "types": "./dist/overview_panel.d.ts",
+      "import": "./dist/overview_panel.js"
+    },
+    "./relationship-panel": {
+      "types": "./dist/relationship_panel.d.ts",
+      "import": "./dist/relationship_panel.js"
+    },
+    "./resource-editor": {
+      "types": "./dist/resource_editor.d.ts",
+      "import": "./dist/resource_editor.js"
+    },
+    "./tag-list": {
+      "types": "./dist/tag_list.d.ts",
+      "import": "./dist/tag_list.js"
+    },
+    "./tag-picker": {
+      "types": "./dist/tag_picker.d.ts",
+      "import": "./dist/tag_picker.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "vite --config vite.playground.config.ts",
+    "lint": "bun run lint:prettier && bun run lint:eslint",
+    "lint:prettier": "prettier --check .",
+    "lint:eslint": "eslint .",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "rm -rf dist && vite build && tsc -p tsconfig.build.json",
+    "package:check": "bun run build && publint && bun scripts/check_package.ts",
+    "prepublishOnly": "bun run lint && bun run check && bun run test && bun run package:check"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "1.55.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/bun": "^1.3.14",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "@vitest/coverage-v8": "4.1.11",
+    "axe-core": "^4.12.1",
+    "eslint": "^10.8.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.8.0",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.22",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.65.0",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  },
+  "packageManager": "bun@1.3.6",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

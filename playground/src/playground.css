@@ -1,0 +1,214 @@
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/work-sans-latin-ext-400-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/work-sans-latin-ext-500-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/work-sans-latin-ext-600-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Spectral';
+  src: url('/fonts/spectral-latin-ext-600-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+body {
+  min-width: 20rem;
+  font-family: 'Work Sans', 'Avenir Next', Avenir, 'Helvetica Neue', sans-serif;
+}
+
+.playground-shell {
+  --font-sans: 'Work Sans', 'Avenir Next', Avenir, 'Helvetica Neue', sans-serif;
+  --font-display: 'Spectral', Charter, Georgia, serif;
+}
+
+.playground-topbar,
+.playground-heading,
+.playground-section-heading {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.playground-topbar > div:first-child,
+.playground-identity {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.playground-identity {
+  padding: 0.5rem 0.25rem 1rem;
+}
+.playground-identity strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+}
+.playground-identity span,
+.playground-kicker {
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+.playground-stack {
+  display: grid;
+  max-width: 72rem;
+  gap: 1.5rem;
+  margin-inline: auto;
+}
+.playground-heading {
+  padding-block: 0.75rem 1.25rem;
+}
+.playground-heading h1,
+.playground-heading p,
+.playground-section-heading h2,
+.playground-danger-card h2,
+.playground-danger-card p,
+.playground-card > p {
+  margin: 0;
+}
+.playground-heading h1 {
+  margin-block: 0.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+.playground-heading > div > p:last-child,
+.playground-danger-card > p:not(.playground-kicker) {
+  color: var(--muted-foreground);
+  line-height: 1.55;
+}
+.playground-card {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--card);
+  color: var(--card-foreground);
+  transition:
+    box-shadow 200ms var(--ming-ease),
+    transform 200ms var(--ming-ease);
+}
+.playground-card:hover {
+  box-shadow: 0 2px 8px rgb(20 22 18 / 4%);
+}
+.playground-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.playground-form-grid > :nth-child(3),
+.playground-form-grid > :last-child {
+  grid-column: 1 / -1;
+}
+.playground-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+}
+.playground-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.playground-danger-card {
+  position: relative;
+  align-content: start;
+  overflow: hidden;
+}
+.playground-danger-card::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.1875rem;
+  background: var(--destructive);
+  content: '';
+}
+.playground-danger-card .ming-button {
+  justify-self: start;
+}
+.playground-focus-note {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-block: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+}
+.playground-focus-note strong {
+  color: var(--foreground);
+}
+.playground-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+.playground-more-icon {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+.playground-stack > * {
+  animation: playground-enter 520ms var(--ming-ease) both;
+}
+.playground-stack > :nth-child(2) {
+  animation-delay: 60ms;
+}
+.playground-stack > :nth-child(3) {
+  animation-delay: 120ms;
+}
+.playground-stack > :nth-child(4) {
+  animation-delay: 180ms;
+}
+
+@keyframes playground-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 48rem) {
+  .playground-form-grid,
+  .playground-grid {
+    grid-template-columns: 1fr;
+  }
+  .playground-heading,
+  .playground-section-heading {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playground-stack > * {
+    animation: none;
+  }
+}
