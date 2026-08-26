@@ -1,6 +1,7 @@
 import { chromium } from '@playwright/test';
 import {
   cpSync,
+  existsSync,
   mkdtempSync,
   readFileSync,
   readdirSync,
@@ -14,6 +15,8 @@ import { pathToFileURL } from 'node:url';
 
 import type { Browser } from '@playwright/test';
 
+import { PACKAGE_ENTRIES, entryName } from '../config/components.ts';
+
 interface PackageManifest {
   exports: Record<string, string | { import: string; types: string }>;
 }
@@ -24,6 +27,42 @@ interface FixtureManifest {
 
 const packageRoot = resolve(import.meta.dirname, '..');
 const temporaryDirectory = mkdtempSync(join(tmpdir(), 'ming-components-package-'));
+
+function assertExportsAligned(): void {
+  const manifestPath = join(packageRoot, 'package.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as PackageManifest;
+  const actual = Object.keys(manifest.exports).sort();
+  const expected = [
+    '.',
+    './package.json',
+    './styles.css',
+    ...PACKAGE_ENTRIES.map((entry) => `./${entry.slug}`),
+  ].sort();
+
+  const missing = expected.filter((key) => !actual.includes(key));
+  const unexpected = actual.filter((key) => !expected.includes(key));
+  if (missing.length > 0 || unexpected.length > 0) {
+    throw new Error(
+      `package.json exports drifted from config/components.ts.\n` +
+        `Missing: ${JSON.stringify(missing)}\nUnexpected: ${JSON.stringify(unexpected)}`,
+    );
+  }
+
+  const barrel = readFileSync(join(packageRoot, 'src/index.ts'), 'utf8');
+  for (const entry of PACKAGE_ENTRIES) {
+    const entryFile = join(packageRoot, 'src/entries', `${entryName(entry.slug)}.ts`);
+    if (!existsSync(entryFile)) {
+      throw new Error(`Missing entry point for ./${entry.slug}: ${entryFile}`);
+    }
+    const modulePath = join(packageRoot, 'src', entry.module);
+    if (!existsSync(modulePath) && !existsSync(`${modulePath}.ts`)) {
+      throw new Error(`Entry source missing for ./${entry.slug}: ${modulePath}`);
+    }
+    if (entry.tier && !barrel.includes(entry.module)) {
+      throw new Error(`Root barrel does not re-export ./${entry.slug} (${entry.module}).`);
+    }
+  }
+}
 
 function run(command: string[], cwd: string): void {
   const result = Bun.spawnSync({ cmd: command, cwd, stderr: 'inherit', stdout: 'inherit' });
@@ -55,6 +94,8 @@ async function launchBrowser(): Promise<Browser> {
 }
 
 try {
+  assertExportsAligned();
+
   const pack = Bun.spawnSync({
     cmd: ['bun', 'pm', 'pack', '--destination', temporaryDirectory],
     cwd: packageRoot,

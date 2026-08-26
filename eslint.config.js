@@ -22,7 +22,7 @@ export default tseslint.config({ ignores: ['dist', 'node_modules'] }, js.configs
   },
   rules: {
     ...jsxA11y.flatConfigs.recommended.rules,
-    ...reactHooks.configs.flat.recommended.rules,
+    ...reactHooks.configs.flat['recommended-latest'].rules,
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
     'react/jsx-uses-react': 'off',

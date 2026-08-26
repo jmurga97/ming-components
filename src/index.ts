@@ -15,8 +15,8 @@ export { DropdownMenu } from './components/molecules/dropdown_menu';
 export { FormField } from './components/molecules/form_field';
 export { SearchField } from './components/molecules/search_field';
 export { StatusRegion } from './components/molecules/status_region';
-export { NavList } from './components/layout/nav_list';
-export { SidebarNav } from './components/layout/sidebar_nav';
+export { NavList } from './components/molecules/nav_list';
+export { SidebarNav } from './components/organisms/sidebar_nav';
 export { ResourceTable } from './components/organisms/resource_table';
 export { BulkActions } from './components/organisms/bulk_actions';
 export { MediaBrowser } from './components/organisms/media_browser';
@@ -43,8 +43,8 @@ export type { DropdownMenuItem, DropdownMenuProps } from './components/molecules
 export type { FormFieldProps } from './components/molecules/form_field';
 export type { SearchFieldProps } from './components/molecules/search_field';
 export type { StatusRegionProps } from './components/molecules/status_region';
-export type { NavListItem, NavListProps } from './components/layout/nav_list';
-export type { SidebarNavProps } from './components/layout/sidebar_nav';
+export type { NavListItem, NavListProps } from './components/molecules/nav_list';
+export type { SidebarNavProps } from './components/organisms/sidebar_nav';
 export type {
   ResourceTableColumn,
   ResourceTableProps,

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": false,
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -20,5 +20,5 @@
       "@ming/components": ["./src/index.ts"]
     }
   },
-  "include": ["src", "playground", "scripts", "*.config.ts", "vite.config.ts"]
+  "include": ["src", "playground", "scripts", "config", "*.config.ts", "vite.config.ts"]
 }

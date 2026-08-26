@@ -18,10 +18,18 @@ import {
   SidebarNav,
   StatusText,
   Switch,
+  TagList,
+  TagPicker,
   Textarea,
 } from '@ming/components';
 import '../../src/styles.css';
 import './playground.css';
+
+const TAG_OPTIONS = [
+  { id: 'editorial', label: 'Editorial' },
+  { id: 'portrait', label: 'Portrait' },
+  { id: 'still-life', label: 'Still life' },
+];
 
 function Playground(): React.JSX.Element {
   const [navigationOpen, setNavigationOpen] = useState(true);
@@ -30,6 +38,7 @@ function Playground(): React.JSX.Element {
   const [restaurant, setRestaurant] = useState('Casa Ming');
   const [language, setLanguage] = useState<string | null>('es');
   const [published, setPublished] = useState(true);
+  const [tags, setTags] = useState<string[]>(['portrait']);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [removed, setRemoved] = useState(false);
   const confirmTriggerRef = useRef<HTMLButtonElement>(null);
@@ -214,6 +223,27 @@ function Playground(): React.JSX.Element {
                   Delete menu
                 </Button>
               )}
+            </div>
+          </section>
+
+          <section aria-label="Taxonomy examples" className="playground-card">
+            <p className="playground-kicker">Taxonomy</p>
+            <h2>Session tags</h2>
+            <p>
+              Filter with the search field or move between options with the arrow keys; Enter
+              toggles the focused tag.
+            </p>
+            <div className="playground-form-grid">
+              <TagPicker onValueChange={setTags} options={TAG_OPTIONS} value={tags} />
+              <div>
+                <p className="playground-kicker">Applied tags</p>
+                <TagList
+                  interactive
+                  items={TAG_OPTIONS.filter((option) => tags.includes(option.id))}
+                  onValueChange={setTags}
+                  value={tags}
+                />
+              </div>
             </div>
           </section>
 

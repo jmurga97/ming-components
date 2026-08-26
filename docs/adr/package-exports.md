@@ -31,3 +31,15 @@ El CSS no se importa desde los entrypoints JavaScript. Cada aplicación hará ex
 - Añadir un componente exige coordinar fuente, barrel, entrada Vite, `exports`, ejemplo y prueba.
 - Los subpaths aún no implementados no se anuncian en `package.json`; el inventario documenta su nombre reservado para Plan 2.
 - `sideEffects: ["**/*.css"]` conserva únicamente los estilos como side effects declarados.
+
+## Enmienda (2026-08-25): entradas declarativas
+
+La coordenada «fuente, barrel, entrada Vite, `exports`» se automatiza parcialmente:
+
+- `config/components.ts` es la fuente única de verdad: slug público en kebab-case, módulo fuente y tier atómico de cada subpath.
+- Los puntos de entrada viven en `src/entries/<nombre_snake>.ts` (una línea de re-export) y `vite.config.ts` genera sus entradas desde el manifiesto. Ya no hay stubs en la raíz de `src/`.
+- El build aplana las declaraciones (`scripts/flatten_declarations.ts`) para que `dist/<nombre_snake>.d.ts` siga siendo plano.
+- `scripts/check_package.ts` valida que `package.json` `exports`, el manifiesto y el barrel raíz coincidan antes de empaquetar.
+- `src/components/layout/` desaparece: `nav_list` pasa a `molecules/` y `sidebar_nav` a `organisms/`, según la taxonomía de AGENTS.md.
+
+Los especificadores públicos no cambian: mismo barrel, mismos subpaths, mismos nombres de archivo en `dist`.

@@ -40,7 +40,11 @@ export function OverviewPanel({
           <div key={stat.id}>
             <dt>{stat.label}</dt>
             <dd>{loading ? '—' : stat.value}</dd>
-            {stat.description ? <small>{stat.description}</small> : null}
+            {stat.description ? (
+              <dd>
+                <small>{stat.description}</small>
+              </dd>
+            ) : null}
           </div>
         ))}
       </dl>

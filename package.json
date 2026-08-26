@@ -144,7 +144,7 @@
     "lint:eslint": "eslint .",
     "check": "tsc --noEmit",
     "test": "vitest run",
-    "build": "rm -rf dist && vite build && tsc -p tsconfig.build.json",
+    "build": "rm -rf dist && vite build && tsc -p tsconfig.build.json && bun scripts/flatten_declarations.ts",
     "package:check": "bun run build && publint && bun scripts/check_package.ts",
     "prepublishOnly": "bun run lint && bun run check && bun run test && bun run package:check"
   },
@@ -177,6 +177,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.8.0",
     "jsdom": "^26.1.0",
+    "oxc-transform-react": "^0.147.0",
     "prettier": "^3.9.6",
     "publint": "^0.3.22",
     "tailwindcss": "^4.1.18",
