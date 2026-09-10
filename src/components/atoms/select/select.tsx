@@ -3,6 +3,8 @@ import { Select as BaseSelect } from '@base-ui/react/select';
 import { CheckIcon, ChevronDownIcon } from '../../internal/icon';
 import { cn } from '../../../lib/cn';
 
+import { useId } from 'react';
+
 import type { ReactNode, Ref } from 'react';
 
 export interface SelectOption {
@@ -53,6 +55,7 @@ export function Select({
   triggerRef,
   value,
 }: SelectProps): React.JSX.Element {
+  const triggerId = id ?? useId();
   const items = options.map((option) => ({ label: option.label, value: option.id }));
   return (
     <div className={cn('ming-select', className)}>
@@ -60,7 +63,7 @@ export function Select({
         defaultOpen={defaultOpen}
         defaultValue={defaultValue}
         disabled={disabled}
-        id={id}
+        id={triggerId}
         inputRef={inputRef}
         items={items}
         name={name}
@@ -88,7 +91,7 @@ export function Select({
             sideOffset={4}
           >
             <BaseSelect.Popup className="ming-select__popup">
-              <BaseSelect.List className="ming-select__list">
+              <BaseSelect.List aria-labelledby={triggerId} className="ming-select__list">
                 {options.map((option) => (
                   <BaseSelect.Item
                     className="ming-select__item"

@@ -26,7 +26,9 @@ describe('Select', () => {
     await user.tab();
     await user.keyboard('{ArrowDown}');
 
-    expect(await screen.findByRole('listbox')).toBeVisible();
+    const listbox = await screen.findByRole('listbox');
+    expect(listbox).toBeVisible();
+    expect(listbox).toHaveAccessibleName('Language');
 
     await user.click(screen.getByRole('option', { name: 'English' }));
 

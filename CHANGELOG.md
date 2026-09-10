@@ -2,6 +2,10 @@
 
 All notable changes follow Semantic Versioning.
 
+## 1.0.5 - 2026-09-08
+
+- Label the Select listbox with its trigger so open popups pass `aria-input-field-name` axe checks.
+
 ## 1.0.2 - 2026-08-24
 
 - Keep Select popups aligned to the trigger width when option labels vary.
