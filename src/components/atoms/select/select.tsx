@@ -55,7 +55,8 @@ export function Select({
   triggerRef,
   value,
 }: SelectProps): React.JSX.Element {
-  const triggerId = id ?? useId();
+  const generatedId = useId();
+  const triggerId = id ?? generatedId;
   const items = options.map((option) => ({ label: option.label, value: option.id }));
   return (
     <div className={cn('ming-select', className)}>
