@@ -1,6 +1,6 @@
 {
   "name": "@jmurga97/components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React components for quiet, accessible operational interfaces.",
   "license": "MIT",
   "type": "module",
