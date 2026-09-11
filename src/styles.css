@@ -399,7 +399,7 @@
     z-index: 70;
   }
   .ming-select__positioner {
-    width: var(--anchor-width);
+    min-width: var(--anchor-width);
     max-width: var(--available-width);
   }
   .ming-select__popup,
