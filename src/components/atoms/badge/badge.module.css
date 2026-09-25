@@ -1,0 +1,57 @@
+@layer components {
+  .ming-badge {
+    display: inline-flex;
+    min-height: 1.375rem;
+    align-items: center;
+    gap: 0.4375rem;
+    border: 1px solid var(--border);
+    border-radius: var(--ming-radius-control);
+    background: var(--card);
+    color: var(--foreground);
+    padding-inline: 0.4375rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ming-badge::before {
+    display: none;
+    width: var(--ming-dot);
+    height: var(--ming-dot);
+    flex: 0 0 auto;
+    background: var(--ming-tone, currentColor);
+    content: "";
+  }
+  .ming-badge--neutral {
+    color: var(--muted-foreground);
+  }
+  .ming-badge--info,
+  .ming-badge--success,
+  .ming-badge--warning,
+  .ming-badge--error {
+    border-color: var(--input);
+  }
+  .ming-badge--info::before,
+  .ming-badge--success::before,
+  .ming-badge--warning::before,
+  .ming-badge--error::before {
+    display: block;
+  }
+  .ming-badge--info {
+    --ming-tone: var(--ming-info);
+  }
+  .ming-badge--success {
+    --ming-tone: var(--ming-success);
+  }
+  .ming-badge--warning {
+    --ming-tone: var(--ming-warning);
+  }
+  .ming-badge--error {
+    --ming-tone: var(--destructive);
+    border-color: var(--destructive);
+    color: var(--destructive);
+  }
+}

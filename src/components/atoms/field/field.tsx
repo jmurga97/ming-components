@@ -1,3 +1,4 @@
+import styles from './field.module.css';
 import { Field as BaseField } from '@base-ui/react/field';
 
 import { cn } from '../../../lib/cn';
@@ -30,22 +31,24 @@ export function Field({
   const isInvalid = invalid || Boolean(error);
   return (
     <BaseField.Root
-      className={cn('ming-field', className)}
+      className={cn(styles['ming-field'], className)}
       disabled={disabled}
       invalid={isInvalid}
       {...props}
     >
-      <BaseField.Label className="ming-field__label">
+      <BaseField.Label className={styles['ming-field__label']}>
         <span>{label}</span>
         {required ? <span aria-hidden="true"> *</span> : null}
-        {optional && !required ? <span className="ming-field__optional">Optional</span> : null}
+        {optional && !required ? (
+          <span className={styles['ming-field__optional']}>Optional</span>
+        ) : null}
       </BaseField.Label>
       {children}
       {hint ? (
-        <BaseField.Description className="ming-field__hint">{hint}</BaseField.Description>
+        <BaseField.Description className={styles['ming-field__hint']}>{hint}</BaseField.Description>
       ) : null}
       {error ? (
-        <BaseField.Error className="ming-field__error" match>
+        <BaseField.Error className={styles['ming-field__error']} match>
           {error}
         </BaseField.Error>
       ) : null}

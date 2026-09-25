@@ -1,0 +1,112 @@
+@layer components {
+  .ming-app-shell__dialog-backdrop {
+    position: fixed;
+    z-index: 80;
+    inset: 0;
+    background: rgb(0 0 0 / 64%);
+    transition: opacity var(--ming-duration-normal) var(--ming-ease);
+  }
+  .ming-app-shell__dialog-viewport {
+    position: fixed;
+    z-index: 81;
+    inset: 0;
+    display: grid;
+    overflow-y: auto;
+    padding: var(--ming-space-4);
+    place-items: center;
+  }
+  .ming-app-shell__dialog-backdrop[data-starting-style],
+  .ming-app-shell__dialog-backdrop[data-ending-style] {
+    opacity: 0;
+  }
+  .ming-app-shell {
+    display: grid;
+    min-height: 100dvh;
+    grid-template: "navigation header" auto "navigation main" minmax(0, 1fr) / 15rem minmax(0, 1fr);
+    background: var(--background);
+    color: var(--foreground);
+    --ming-button-icon-size: 2.5rem;
+  }
+  .ming-app-shell[data-navigation-open="false"] {
+    grid-template: "header" auto "main" minmax(0, 1fr) / minmax(0, 1fr);
+  }
+  .ming-app-shell__navigation {
+    grid-area: navigation;
+    border-inline-end: 1px solid var(--border);
+    background: var(--background);
+  }
+  .ming-app-shell__header {
+    display: flex;
+    min-width: 0;
+    min-height: 3.5rem;
+    align-items: center;
+    gap: var(--ming-space-3);
+    grid-area: header;
+    padding-inline: var(--ming-space-6);
+    border-block-end: 1px solid var(--border);
+    background: var(--background);
+  }
+  .ming-app-shell__main {
+    min-width: 0;
+    min-height: 0;
+    grid-area: main;
+    padding: var(--ming-space-6);
+  }
+  .ming-app-shell__mobile-viewport {
+    padding: 0;
+    place-items: stretch start;
+  }
+  .ming-app-shell__mobile-navigation {
+    position: relative;
+    width: min(19rem, calc(100vw - 2rem));
+    height: 100dvh;
+    overflow-y: auto;
+    border-inline-end: 1px solid var(--input);
+    background: var(--background);
+    color: var(--foreground);
+    transition:
+      opacity var(--ming-duration-normal) var(--ming-ease),
+      transform var(--ming-duration-normal) var(--ming-ease);
+  }
+  .ming-app-shell__mobile-navigation[data-starting-style],
+  .ming-app-shell__mobile-navigation[data-ending-style] {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  .ming-app-shell__mobile-close-action {
+    position: absolute;
+    z-index: 1;
+    inset: var(--ming-space-3) var(--ming-space-3) auto auto;
+    --ming-button-icon-size: 2rem;
+  }
+  .ming-app-shell__mobile-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  @media (max-width: 56rem) {
+    .ming-app-shell {
+      grid-template: "header" auto "main" minmax(0, 1fr) / minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 56rem) {
+    .ming-app-shell__header {
+      min-height: 3.5rem;
+      padding-inline: var(--ming-space-4);
+    }
+  }
+  @media (max-width: 56rem) {
+    .ming-app-shell__main {
+      padding: var(--ming-space-4);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-app-shell__dialog-backdrop,
+    .ming-app-shell__mobile-navigation {
+      transition-duration: 0.01ms;
+    }
+  }
+}

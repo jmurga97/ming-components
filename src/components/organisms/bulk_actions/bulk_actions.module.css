@@ -1,0 +1,20 @@
+@layer components {
+  .ming-bulk-actions {
+    display: flex;
+    min-height: 3.5rem;
+    align-items: center;
+    gap: var(--ming-space-3);
+    border: 1px solid var(--foreground);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: var(--ming-space-2) var(--ming-space-3);
+  }
+  .ming-bulk-actions__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--ming-space-2);
+  }
+  .ming-bulk-actions__status {
+    margin-inline-start: auto;
+  }
+}

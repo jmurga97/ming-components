@@ -1,0 +1,94 @@
+@layer components {
+  .ming-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ming-space-2);
+    border: 1px solid transparent;
+    border-radius: var(--ming-radius-control);
+    box-shadow: none;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color var(--ming-duration-fast) var(--ming-ease),
+      border-color var(--ming-duration-fast) var(--ming-ease),
+      color var(--ming-duration-fast) var(--ming-ease);
+    &:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+    &[data-disabled],
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    &:not([data-disabled], :disabled):active {
+      transition-duration: 0ms;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0.01ms;
+    }
+  }
+  .ming-button--sm {
+    min-height: 2rem;
+    padding-inline: var(--ming-space-3);
+    font-size: 0.6875rem;
+    --ming-icon-margin-inline: -0.25rem;
+  }
+  .ming-button--md {
+    min-height: 2.5rem;
+    padding-inline: var(--ming-space-4);
+    font-size: 0.75rem;
+  }
+  .ming-button--lg {
+    min-height: 2.875rem;
+    padding-inline: var(--ming-space-5);
+    font-size: 0.8125rem;
+  }
+  .ming-button--primary {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  .ming-button--primary:not([data-disabled], :disabled):hover {
+    border-color: color-mix(in srgb, var(--primary) 80%, var(--background));
+    background: color-mix(in srgb, var(--primary) 80%, var(--background));
+  }
+  .ming-button--secondary {
+    border-color: var(--input);
+    background: transparent;
+    color: var(--foreground);
+  }
+  .ming-button--secondary:not([data-disabled], :disabled):hover {
+    border-color: var(--foreground);
+    background: var(--secondary);
+  }
+  .ming-button--ghost {
+    background: transparent;
+    color: var(--ming-button-foreground, var(--foreground));
+  }
+  .ming-button--ghost:not([data-disabled], :disabled):hover {
+    background: var(--ming-button-hover-background, var(--secondary));
+    color: var(--ming-button-hover-foreground, var(--foreground));
+  }
+  .ming-button--destructive {
+    border-color: var(--destructive);
+    background: transparent;
+    color: var(--destructive);
+  }
+  .ming-button--destructive:not([data-disabled], :disabled):hover {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+  }
+  .ming-button--icon-only {
+    width: var(--ming-button-icon-size, 2.5rem);
+    min-width: var(--ming-button-icon-size, 2.5rem);
+    min-height: var(--ming-button-icon-size, 2.5rem);
+    padding-inline: 0;
+  }
+}

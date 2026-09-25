@@ -1,0 +1,61 @@
+@layer components {
+  .ming-relationship-panel button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+  .ming-relationship-panel h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .ming-relationship-panel h3 {
+    font-size: 1rem;
+  }
+  .ming-relationship-panel small {
+    color: var(--muted-foreground);
+  }
+  .ming-relationship-panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: var(--ming-space-5);
+  }
+  .ming-relationship-panel ul {
+    display: grid;
+    margin: var(--ming-space-4) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ming-relationship-panel li {
+    border-block-start: 1px solid var(--border);
+  }
+  .ming-relationship-panel button,
+  .ming-relationship-panel li > div {
+    display: grid;
+    width: 100%;
+    gap: var(--ming-space-1);
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: var(--ming-space-3) 0;
+    font: inherit;
+    text-align: start;
+  }
+  .ming-relationship-panel button {
+    cursor: pointer;
+  }
+  .ming-relationship-panel button:hover {
+    color: var(--muted-foreground);
+  }
+  .ming-relationship-panel small {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+  }
+  .ming-relationship-panel__empty {
+    margin: var(--ming-space-4) 0 0;
+    color: var(--muted-foreground);
+  }
+}

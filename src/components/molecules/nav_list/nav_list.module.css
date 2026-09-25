@@ -1,0 +1,101 @@
+@layer components {
+  .ming-nav-list__item:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-nav-list {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ming-nav-list__item {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 2.5rem;
+    align-items: center;
+    gap: var(--ming-space-3);
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--ming-radius-control);
+    background: transparent;
+    color: var(--muted-foreground);
+    padding: 0.5rem 0.75rem 0.5rem 1.375rem;
+    font: inherit;
+    text-align: start;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--ming-duration-fast) var(--ming-ease),
+      color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-nav-list__item::before {
+    position: absolute;
+    inset-block-start: calc(50% - var(--ming-dot) / 2);
+    inset-inline-start: 0.5rem;
+    width: var(--ming-dot);
+    height: var(--ming-dot);
+    border-radius: var(--ming-radius-pill);
+    background: transparent;
+    content: "";
+  }
+  .ming-nav-list__item:hover {
+    background: var(--secondary);
+    color: var(--foreground);
+  }
+  .ming-nav-list__item[data-current] {
+    background: transparent;
+    color: var(--primary);
+    font-weight: 500;
+  }
+  .ming-nav-list__item[data-current]::before {
+    background: var(--ming-signal);
+  }
+  .ming-nav-list__item:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .ming-nav-list__icon {
+    display: inline-grid;
+    width: var(--ming-icon);
+    height: var(--ming-icon);
+    flex: 0 0 auto;
+    place-items: center;
+    --ming-icon-size: var(--ming-icon);
+  }
+  .ming-nav-list__copy {
+    display: grid;
+    min-width: 0;
+    gap: 0.125rem;
+  }
+  .ming-nav-list__copy[data-collapsed] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ming-nav-list__label {
+    overflow: hidden;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ming-nav-list__description {
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-nav-list__item {
+      transition-duration: 0.01ms;
+    }
+  }
+}

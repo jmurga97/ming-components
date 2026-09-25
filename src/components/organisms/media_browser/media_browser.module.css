@@ -1,0 +1,80 @@
+@layer components {
+  .ming-media-browser__rail button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+  .ming-media-browser {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+  }
+  .ming-media-browser > figure {
+    display: grid;
+    margin: 0;
+    background: var(--muted);
+    place-items: center;
+  }
+  .ming-media-browser figcaption {
+    width: 100%;
+    border-block-start: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted-foreground);
+    padding: var(--ming-space-3) var(--ming-space-4);
+    font-size: 0.8125rem;
+  }
+  .ming-media-browser__rail {
+    display: flex;
+    gap: var(--ming-space-2);
+    overflow-x: auto;
+    margin: 0;
+    padding: var(--ming-space-3);
+    border-block-start: 1px solid var(--border);
+    list-style: none;
+  }
+  .ming-media-browser__alt {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ming-media-browser__rail button {
+    overflow: hidden;
+    width: 4.5rem;
+    height: 4.5rem;
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    border-radius: var(--ming-radius-control);
+    background: var(--muted);
+    padding: 0;
+    cursor: pointer;
+  }
+  .ming-media-browser__rail button:hover {
+    border-color: var(--input);
+  }
+  .ming-media-browser__rail button[aria-pressed="true"] {
+    border-color: var(--ming-service);
+    box-shadow: inset 0 calc(var(--ming-rail) * -1) 0 var(--ming-service);
+  }
+  .ming-media-browser__rail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ming-media-browser > figure img {
+    display: block;
+    width: 100%;
+    max-height: 32rem;
+    object-fit: contain;
+  }
+  .ming-media-browser--empty {
+    min-height: 12rem;
+    padding: var(--ming-space-7);
+    color: var(--muted-foreground);
+    place-items: center;
+    text-align: center;
+  }
+}

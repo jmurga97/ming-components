@@ -1,17 +1,22 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
+import styles from './badge.module.css';
 import { Badge } from './badge';
 
 describe('Badge', () => {
   it('renders children with the neutral default', () => {
     render(<Badge>Draft</Badge>);
-    expect(screen.getByText('Draft')).toHaveClass('ming-badge', 'ming-badge--neutral');
+    expect(screen.getByText('Draft')).toHaveClass(
+      cssModuleClass(styles, 'ming-badge'),
+      cssModuleClass(styles, 'ming-badge--neutral'),
+    );
   });
 
   it('applies each tone variant', () => {
     const tones = ['neutral', 'info', 'success', 'warning', 'error'] as const;
     render(
+      // biome-ignore lint/complexity/noUselessFragments: Testing Library render requires one React element.
       <>
         {tones.map((tone) => (
           <Badge key={tone} tone={tone}>
@@ -21,7 +26,7 @@ describe('Badge', () => {
       </>,
     );
     for (const tone of tones) {
-      expect(screen.getByText(tone)).toHaveClass(`ming-badge--${tone}`);
+      expect(screen.getByText(tone)).toHaveClass(cssModuleClass(styles, `ming-badge--${tone}`));
     }
   });
 
@@ -34,7 +39,7 @@ describe('Badge', () => {
     const badge = screen.getByText('Live');
     expect(badge).toHaveAttribute('id', 'status-badge');
     expect(badge).toHaveAttribute('data-track', 'badge');
-    expect(badge).toHaveClass('ming-badge--neutral', 'extra');
+    expect(badge).toHaveClass(cssModuleClass(styles, 'ming-badge--neutral'), 'extra');
   });
 
   it('has no detectable accessibility violations', async () => {

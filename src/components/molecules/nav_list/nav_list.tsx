@@ -1,3 +1,4 @@
+import styles from './nav_list.module.css';
 import { cn } from '../../../lib/cn';
 
 import type { ReactNode } from 'react';
@@ -26,15 +27,15 @@ export function NavList({
   onNavigate,
 }: NavListProps): React.JSX.Element {
   return (
-    <ul className={cn('ming-nav-list', className)}>
+    <ul className={cn(styles['ming-nav-list'], className)}>
       {items.map((item) => {
         const content = (
           <>
-            {item.icon ? <span className="ming-nav-list__icon">{item.icon}</span> : null}
-            <span className={cn('ming-nav-list__copy', collapsed && 'ming-visually-hidden')}>
-              <span className="ming-nav-list__label">{item.label}</span>
+            {item.icon ? <span className={styles['ming-nav-list__icon']}>{item.icon}</span> : null}
+            <span className={styles['ming-nav-list__copy']} data-collapsed={collapsed || undefined}>
+              <span className={styles['ming-nav-list__label']}>{item.label}</span>
               {item.description ? (
-                <span className="ming-nav-list__description">{item.description}</span>
+                <span className={styles['ming-nav-list__description']}>{item.description}</span>
               ) : null}
             </span>
           </>
@@ -44,7 +45,7 @@ export function NavList({
             {item.href ? (
               <a
                 aria-current={item.current ? 'page' : undefined}
-                className="ming-nav-list__item"
+                className={styles['ming-nav-list__item']}
                 data-current={item.current || undefined}
                 href={item.href}
                 onClick={(event) => {
@@ -72,7 +73,7 @@ export function NavList({
             ) : (
               <button
                 aria-current={item.current ? 'page' : undefined}
-                className="ming-nav-list__item"
+                className={styles['ming-nav-list__item']}
                 data-current={item.current || undefined}
                 disabled={item.disabled}
                 onClick={() => onNavigate?.(item.id)}

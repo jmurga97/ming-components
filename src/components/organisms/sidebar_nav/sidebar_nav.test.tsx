@@ -49,7 +49,7 @@ describe('SidebarNav', () => {
 
     expect(screen.getByRole('navigation', { name: 'Client sections' })).toBeInTheDocument();
     const copy = screen.getByText('Menu').parentElement;
-    expect(copy).toHaveClass('ming-visually-hidden');
+    expect(copy).toHaveAttribute('data-collapsed', 'true');
   });
 
   it('renders a free-form footer node beside the footer list', () => {
@@ -74,7 +74,14 @@ describe('SidebarNav', () => {
     const { container } = render(
       <SidebarNav
         footerItems={[{ href: '/logout', id: 'logout', label: 'Sign out' }]}
-        items={[{ current: true, href: '/overview', id: 'overview', label: 'Overview' }]}
+        items={[
+          {
+            current: true,
+            href: '/overview',
+            id: 'overview',
+            label: 'Overview',
+          },
+        ]}
       />,
     );
     await axeVerify(container);

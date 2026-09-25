@@ -52,7 +52,9 @@ describe('Select', () => {
     );
 
     await user.click(screen.getByRole('combobox', { name: 'Language' }));
-    const selectedOption = await screen.findByRole('option', { name: 'Español' });
+    const selectedOption = await screen.findByRole('option', {
+      name: 'Español',
+    });
     await waitFor(() => {
       expect(selectedOption).toHaveFocus();
     });

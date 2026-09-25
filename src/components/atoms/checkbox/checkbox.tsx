@@ -1,3 +1,4 @@
+import styles from './checkbox.module.css';
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox';
 
 import { CheckIcon } from '../../internal/icon';
@@ -10,8 +11,8 @@ export interface CheckboxProps extends Omit<BaseCheckbox.Root.Props, 'className'
 
 export function Checkbox({ className, label, ...props }: CheckboxProps): React.JSX.Element {
   const control = (
-    <BaseCheckbox.Root className={cn('ming-checkbox', className)} {...props}>
-      <BaseCheckbox.Indicator className="ming-checkbox__indicator">
+    <BaseCheckbox.Root className={cn(styles['ming-checkbox'], className)} {...props}>
+      <BaseCheckbox.Indicator className={styles['ming-checkbox__indicator']}>
         <CheckIcon />
       </BaseCheckbox.Indicator>
     </BaseCheckbox.Root>
@@ -20,7 +21,7 @@ export function Checkbox({ className, label, ...props }: CheckboxProps): React.J
   if (!label) return control;
 
   return (
-    <label className="ming-checkbox-label">
+    <label className={styles['ming-checkbox-label']}>
       {control}
       <span>{label}</span>
     </label>

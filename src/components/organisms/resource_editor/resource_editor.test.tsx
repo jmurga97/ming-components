@@ -63,6 +63,16 @@ describe('ResourceEditor', () => {
     expect(onDelete).toHaveBeenCalledOnce();
   });
 
+  it('does not create a nested main landmark', () => {
+    const { container } = render(
+      <ResourceEditor onCancel={vi.fn()} onSave={vi.fn()} resourceTitle="Session">
+        Content
+      </ResourceEditor>,
+    );
+
+    expect(container.querySelector('main')).not.toBeInTheDocument();
+  });
+
   it('submits the underlying form on request', () => {
     const onSave = vi.fn();
     const { container } = render(

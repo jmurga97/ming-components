@@ -1,0 +1,80 @@
+@layer components {
+  .ming-overview-panel h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .ming-overview-panel h2 {
+    font-size: 1.25rem;
+  }
+  .ming-overview-panel p,
+  .ming-overview-panel small {
+    color: var(--muted-foreground);
+  }
+  .ming-overview-panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: var(--ming-space-5);
+  }
+  .ming-overview-panel {
+    display: grid;
+    gap: var(--ming-space-5);
+  }
+  .ming-overview-panel > header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ming-space-4);
+  }
+  .ming-overview-panel dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    margin: 0;
+    border-block: 1px solid var(--border);
+  }
+  .ming-overview-panel dl > div {
+    padding: var(--ming-space-4);
+    border-inline-start: 1px solid var(--border);
+  }
+  .ming-overview-panel dl > div:first-child {
+    border-inline-start: 0;
+    padding-inline-start: 0;
+  }
+  .ming-overview-panel dt {
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ming-overview-panel dd {
+    margin: var(--ming-space-3) 0 0;
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  @media (max-width: 40rem) {
+    .ming-overview-panel dl {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-overview-panel dl > div {
+      border-block-start: 1px solid var(--border);
+      border-inline-start: 0;
+      padding-inline-start: 0;
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-overview-panel dl > div:first-child {
+      border-block-start: 0;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**", "!.claude", "!dist", "!coverage"]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "all"
+    }
+  },
+  "linter": {
+    "domains": {
+      "react": "recommended",
+      "types": "all"
+    },
+    "rules": {
+      "preset": "recommended",
+      "a11y": "on",
+      "correctness": {
+        "useUniqueElementIds": "off"
+      },
+      "performance": {
+        "noJsxPropsBind": "off"
+      },
+      "style": {
+        "useComponentExportOnlyModules": "off"
+      },
+      "nursery": {
+        "useExplicitReturnType": {
+          "level": "error",
+          "options": {
+            "allowExpressions": true
+          }
+        },
+        "useReactCompiler": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "src/components/atoms/checkbox/checkbox.tsx",
+        "src/components/atoms/label/label.tsx",
+        "src/components/atoms/switch/switch.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noLabelWithoutControl": "off"
+          }
+        }
+      }
+    }
+  ],
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
+  }
+}

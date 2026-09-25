@@ -11,6 +11,10 @@
 Deprecations should ship in a minor release before removal in the next major when practical. The
 package does not keep permanent aliases for the historical custom-element API.
 
-The initial public version is `1.0.0`. “v2” describes the rewrite relative to the historical
-library; it is not the npm major. Publishing requires explicit authorization, successful quality
-commands, registry identity/scope checks and review of the exact tarball.
+The historical custom-element rewrite began at `1.0.0`; the React package uses Semantic Versioning
+independently. The release workflow runs lint, typecheck, unit tests and package verification before
+publishing to GitHub Packages.
+
+The release workflow publishes an untagged version already in `package.json` as-is. Set it to
+`2.0.0` for this major release; after `v2.0.0` exists, subsequent pushes to `main` increment the
+patch version automatically.

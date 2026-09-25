@@ -165,7 +165,10 @@ describe('AppShell', () => {
       const user = userEvent.setup();
       render(<ControlledShell />);
 
-      const toggle = screen.getByRole('button', { name: 'Hide navigation', hidden: true });
+      const toggle = screen.getByRole('button', {
+        name: 'Hide navigation',
+        hidden: true,
+      });
       await screen.findByRole('dialog');
       await user.click(screen.getByRole('button', { name: 'Close navigation' }));
 

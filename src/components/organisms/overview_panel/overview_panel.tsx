@@ -1,3 +1,4 @@
+import styles from './overview_panel.module.css';
 import { cn } from '../../../lib/cn';
 import { StatusText } from '../../atoms/status_text';
 
@@ -27,7 +28,10 @@ export function OverviewPanel({
   title,
 }: OverviewPanelProps): React.JSX.Element {
   return (
-    <section aria-busy={loading || undefined} className={cn('ming-overview-panel', className)}>
+    <section
+      aria-busy={loading || undefined}
+      className={cn(styles['ming-overview-panel'], className)}
+    >
       <header>
         <div>
           <h2>{title}</h2>

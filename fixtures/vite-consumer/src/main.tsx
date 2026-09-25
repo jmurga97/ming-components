@@ -1,4 +1,4 @@
-import { Button } from '@ming/components';
+import { AppShell, Button, NavList } from '@ming/components';
 import { Select } from '@ming/components/select';
 import '@ming/components/styles.css';
 import { useState } from 'react';
@@ -15,8 +15,13 @@ function Fixture(): React.JSX.Element {
   }
 
   return (
-    <main>
-      <Button onClick={toggleTheme}>Use {theme === 'light' ? 'dark' : 'light'} mode</Button>
+    <AppShell
+      header={
+        <Button onClick={toggleTheme}>Use {theme === 'light' ? 'dark' : 'light'} mode</Button>
+      }
+      navigation={<NavList collapsed items={[{ id: 'overview', label: 'Fixture navigation' }]} />}
+      onOpenChange={() => {}}
+    >
       <Select
         ariaLabel="Fixture language"
         defaultOpen
@@ -25,7 +30,7 @@ function Fixture(): React.JSX.Element {
           { id: 'es', label: 'Español' },
         ]}
       />
-    </main>
+    </AppShell>
   );
 }
 

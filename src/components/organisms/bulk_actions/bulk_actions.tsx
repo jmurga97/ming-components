@@ -1,3 +1,4 @@
+import styles from './bulk_actions.module.css';
 import { cn } from '../../../lib/cn';
 import { Button } from '../../atoms/button';
 
@@ -27,12 +28,16 @@ export function BulkActions({
   status,
 }: BulkActionsProps): React.JSX.Element {
   return (
-    <div aria-label={ariaLabel} className={cn('ming-bulk-actions', className)} role="toolbar">
+    <div
+      aria-label={ariaLabel}
+      className={cn(styles['ming-bulk-actions'], className)}
+      role="toolbar"
+    >
       <strong>{label ?? `${String(count)} selected`}</strong>
-      <div aria-disabled={disabled || undefined} className="ming-bulk-actions__actions">
+      <div aria-disabled={disabled || undefined} className={styles['ming-bulk-actions__actions']}>
         {actions}
       </div>
-      {status ? <div className="ming-bulk-actions__status">{status}</div> : null}
+      {status ? <div className={styles['ming-bulk-actions__status']}>{status}</div> : null}
       <Button disabled={disabled} onClick={onClearSelection} size="sm" variant="ghost">
         {clearLabel}
       </Button>

@@ -1,0 +1,58 @@
+@layer components {
+  .ming-tag-picker button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+  .ming-tag-picker {
+    display: grid;
+    gap: var(--ming-space-2);
+  }
+  .ming-tag-picker__options {
+    display: grid;
+    max-height: 18rem;
+    overflow-y: auto;
+    border: 1px solid var(--input);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: var(--ming-space-1);
+    --ming-icon-size: var(--ming-icon-sm);
+  }
+  .ming-tag-picker__announcement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .ming-tag-picker__options button {
+    display: flex;
+    min-height: 2.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ming-space-3);
+    border: 0;
+    border-radius: var(--ming-radius-control);
+    background: transparent;
+    color: inherit;
+    padding: 0.375rem 0.25rem 0.375rem 0.625rem;
+    font: inherit;
+    font-size: 0.875rem;
+    text-align: start;
+    cursor: pointer;
+  }
+  .ming-tag-picker__options button:hover {
+    background: var(--secondary);
+  }
+  .ming-tag-picker__options button[aria-selected="true"] {
+    background: var(--accent);
+    color: var(--accent-foreground);
+    font-weight: 500;
+  }
+  .ming-tag-picker__options p {
+    margin: 0;
+    padding: var(--ming-space-5);
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+}

@@ -1,0 +1,126 @@
+@layer tokens {
+  /*
+ * Ming — an instrument panel in a dark room, a printed technical manual in daylight.
+ * Monochrome ink on paper, Geist Sans for reading, Geist Mono for every control and label,
+ * pixel icons, and one red signal dot that only ever means "here" or "look now".
+ */ :root,
+  .light {
+    color-scheme: light;
+    --background: #f5f5f5;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+    --popover: #ffffff;
+    --popover-foreground: #1a1a1a;
+    --primary: #000000;
+    --primary-foreground: #ffffff;
+    --secondary: #ebebeb;
+    --secondary-foreground: #1a1a1a;
+    --muted: #ebebeb;
+    --muted-foreground: #666666;
+    --accent: #e3e3e3;
+    --accent-foreground: #000000;
+    --destructive: #c4151d;
+    --destructive-foreground: #ffffff;
+    --border: #e2e2e2;
+    --input: #858585;
+    --ring: #000000;
+    --ming-signal: #d71921;
+    --ming-link: #0062cc;
+    --ming-info: #1a1a1a;
+    --ming-info-surface: #f0f0f0;
+    --ming-success: #0a6f6a;
+    --ming-success-surface: #e8f4f3;
+    --ming-warning: #8a6100;
+    --ming-warning-surface: #faf3e3;
+    --ming-error-surface: #fbeaea;
+    --ming-service: #000000;
+    --radius: 4px;
+    --ming-radius-control: 2px;
+    --ming-radius-pill: 999px;
+    --font-sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --font-pixel: "Geist Pixel Line", "Geist Mono", ui-monospace, monospace;
+    --ming-space-1: 0.25rem;
+    --ming-space-2: 0.5rem;
+    --ming-space-3: 0.75rem;
+    --ming-space-4: 1rem;
+    --ming-space-5: 1.5rem;
+    --ming-space-6: 2rem;
+    --ming-space-7: 2.5rem;
+    --ming-icon: 24px;
+    --ming-icon-sm: 12px;
+    --ming-dot: 6px;
+    --ming-rail: 2px;
+    --ming-duration-fast: 150ms;
+    --ming-duration-normal: 250ms;
+    --ming-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .dark {
+    color-scheme: dark;
+    --background: #000000;
+    --foreground: #e8e8e8;
+    --card: #111111;
+    --card-foreground: #e8e8e8;
+    --popover: #1a1a1a;
+    --popover-foreground: #e8e8e8;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+    --secondary: #1f1f1f;
+    --secondary-foreground: #e8e8e8;
+    --muted: #1f1f1f;
+    --muted-foreground: #999999;
+    --accent: #262626;
+    --accent-foreground: #ffffff;
+    --destructive: #ff5c5f;
+    --destructive-foreground: #000000;
+    --border: #262626;
+    --input: #6b6b6b;
+    --ring: #ffffff;
+    --ming-signal: #d71921;
+    --ming-link: #5b9bf6;
+    --ming-info: #e8e8e8;
+    --ming-info-surface: #161616;
+    --ming-success: #3fc1b6;
+    --ming-success-surface: #0c1f1e;
+    --ming-warning: #e0b447;
+    --ming-warning-surface: #221c0c;
+    --ming-error-surface: #2a1010;
+    --ming-service: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light):not(.dark) {
+      color-scheme: dark;
+      --background: #000000;
+      --foreground: #e8e8e8;
+      --card: #111111;
+      --card-foreground: #e8e8e8;
+      --popover: #1a1a1a;
+      --popover-foreground: #e8e8e8;
+      --primary: #ffffff;
+      --primary-foreground: #000000;
+      --secondary: #1f1f1f;
+      --secondary-foreground: #e8e8e8;
+      --muted: #1f1f1f;
+      --muted-foreground: #999999;
+      --accent: #262626;
+      --accent-foreground: #ffffff;
+      --destructive: #ff5c5f;
+      --destructive-foreground: #000000;
+      --border: #262626;
+      --input: #6b6b6b;
+      --ring: #ffffff;
+      --ming-signal: #d71921;
+      --ming-link: #5b9bf6;
+      --ming-info: #e8e8e8;
+      --ming-info-surface: #161616;
+      --ming-success: #3fc1b6;
+      --ming-success-surface: #0c1f1e;
+      --ming-warning: #e0b447;
+      --ming-warning-surface: #221c0c;
+      --ming-error-surface: #2a1010;
+      --ming-service: #ffffff;
+    }
+  }
+}

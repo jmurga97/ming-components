@@ -1,3 +1,4 @@
+import styles from './media_browser.module.css';
 import { cn } from '../../../lib/cn';
 
 export interface MediaBrowserItem {
@@ -29,20 +30,25 @@ export function MediaBrowser({
   const selected = items.find((item) => item.id === selectedId) ?? items[0];
   if (!selected)
     return (
-      <div className={cn('ming-media-browser ming-media-browser--empty', className)}>
+      <div
+        className={cn(
+          `${styles['ming-media-browser']} ${styles['ming-media-browser--empty']}`,
+          className,
+        )}
+      >
         {emptyLabel}
       </div>
     );
   return (
-    <section className={cn('ming-media-browser', className)}>
+    <section className={cn(styles['ming-media-browser'], className)}>
       <figure>
         <img alt={selected.alt} src={selected.src} />
         {selected.caption ? <figcaption>{selected.caption}</figcaption> : null}
       </figure>
       {showRail && items.length > 1 ? (
-        <div aria-label="Media thumbnails" className="ming-media-browser__rail" role="list">
+        <ul aria-label="Media thumbnails" className={styles['ming-media-browser__rail']}>
           {items.map((item) => (
-            <div key={item.id} role="listitem">
+            <li key={item.id}>
               <button
                 aria-current={item.id === selected.id ? 'true' : undefined}
                 disabled={disabled}
@@ -52,11 +58,11 @@ export function MediaBrowser({
                 type="button"
               >
                 <img alt="" src={item.thumbnailSrc ?? item.src} />
-                <span className="ming-visually-hidden">{item.alt}</span>
+                <span className={styles['ming-media-browser__alt']}>{item.alt}</span>
               </button>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : null}
     </section>
   );

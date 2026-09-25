@@ -3,6 +3,12 @@ import { useState } from 'react';
 
 import type { ReactNode } from 'react';
 
+export function cssModuleClass(styles: Readonly<Record<string, string>>, name: string): string {
+  const className = styles[name];
+  if (!className) throw new Error(`CSS module is missing the ${name} class.`);
+  return className;
+}
+
 /** Runs axe against `container` with color contrast disabled (jsdom has no layout). */
 export async function axeVerify(container: HTMLElement): Promise<void> {
   const results = await axe.run(container, {

@@ -1,0 +1,184 @@
+@layer components {
+  .ming-resource-table__row-action:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-resource-table {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+  }
+  .ming-resource-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+  .ming-resource-table th,
+  .ming-resource-table td {
+    padding: 0.75rem var(--ming-space-4);
+    border-block-end: 1px solid var(--border);
+    text-align: start;
+  }
+  .ming-resource-table th {
+    border-block-end-color: var(--input);
+    background: transparent;
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ming-resource-table [data-align="center"] {
+    text-align: center;
+  }
+  .ming-resource-table [data-align="end"] {
+    text-align: end;
+  }
+  .ming-resource-table td[data-align="end"] {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+  .ming-resource-table tr[data-selected] {
+    box-shadow: inset var(--ming-rail) 0 0 var(--ming-service);
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  .ming-resource-table__selection {
+    width: 2.75rem;
+  }
+  .ming-resource-table input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--primary);
+    vertical-align: middle;
+  }
+  .ming-resource-table__row-action {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    text-align: inherit;
+    cursor: pointer;
+  }
+  .ming-resource-table[data-density="compact"] th,
+  .ming-resource-table[data-density="compact"] td {
+    padding: 0.5rem var(--ming-space-3);
+  }
+  .ming-resource-table tbody tr:last-child td {
+    border-block-end: 0;
+  }
+  .ming-resource-table tr[data-activatable] {
+    cursor: pointer;
+  }
+  .ming-resource-table tr[data-activatable]:hover {
+    background: var(--secondary);
+  }
+  .ming-resource-table tr[data-activatable]:focus-visible,
+  .ming-resource-table__sort:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+  .ming-resource-table__sort {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ming-space-2);
+    border: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font: inherit;
+    --ming-icon-size: var(--ming-icon-sm);
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+  .ming-resource-table__sort:hover,
+  .ming-resource-table th[aria-sort="ascending"],
+  .ming-resource-table th[aria-sort="descending"] {
+    color: var(--foreground);
+  }
+  .ming-resource-table__state,
+  .ming-resource-table__error {
+    padding: var(--ming-space-7);
+    color: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .ming-resource-table__error {
+    border: 1px solid var(--destructive);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--destructive);
+  }
+  .ming-resource-table__announcement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] {
+      border: 0;
+      background: transparent;
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] table,
+    .ming-resource-table[data-responsive="stacked"] tbody,
+    .ming-resource-table[data-responsive="stacked"] tr,
+    .ming-resource-table[data-responsive="stacked"] td {
+      display: block;
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] tr {
+      margin-block-end: var(--ming-space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: var(--ming-space-2) var(--ming-space-3);
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] td {
+      display: grid;
+      grid-template-columns: minmax(6rem, 0.45fr) minmax(0, 1fr);
+      gap: var(--ming-space-3);
+      padding: 0.625rem 0;
+      text-align: start;
+    }
+  }
+  @media (max-width: 40rem) {
+    .ming-resource-table[data-responsive="stacked"] td::before {
+      color: var(--muted-foreground);
+      content: attr(data-label);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+}

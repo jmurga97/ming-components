@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -39,5 +42,18 @@ jobs:
       - name: Test
         run: bun run test
 
+      - name: Test Storybook stories
+        run: bun run test:storybook
+
+      - name: Build Storybook
+        run: bun run build-storybook
+
       - name: Build and check package
         run: bun run package:check
+
+      - name: Deploy Storybook to Cloudflare Workers
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: bun run deploy:storybook
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

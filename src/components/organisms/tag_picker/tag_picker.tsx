@@ -1,3 +1,4 @@
+import styles from './tag_picker.module.css';
 import { useMemo, useRef, useState } from 'react';
 
 import { cn } from '../../../lib/cn';
@@ -50,7 +51,7 @@ export function TagPicker({
     for (let step = 0; step < count; step += 1) {
       index = (index + count) % count;
       const candidate = filteredOptions[index];
-      if (!candidate || !candidate.disabled) {
+      if (!candidate?.disabled) {
         setActiveIndex(index);
         optionRefs.current.get(candidate?.id ?? '')?.focus();
         return;
@@ -70,7 +71,7 @@ export function TagPicker({
   }
 
   return (
-    <div className={cn('ming-tag-picker', className)}>
+    <div className={cn(styles['ming-tag-picker'], className)}>
       <Input
         aria-label={ariaLabel}
         disabled={disabled}
@@ -83,7 +84,7 @@ export function TagPicker({
       <div
         aria-label={ariaLabel}
         aria-multiselectable="true"
-        className="ming-tag-picker__options"
+        className={styles['ming-tag-picker__options']}
         role="listbox"
       >
         {filteredOptions.length === 0 ? (
@@ -121,7 +122,7 @@ export function TagPicker({
           ))
         )}
       </div>
-      <span aria-live="polite" className="ming-visually-hidden">
+      <span aria-live="polite" className={styles['ming-tag-picker__announcement']}>
         {value.length} tags selected
       </span>
     </div>

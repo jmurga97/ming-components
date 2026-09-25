@@ -17,19 +17,26 @@ const ENTRY_POINTS = Object.fromEntries([
   ...PACKAGE_ENTRIES.map(entryPointFor),
 ] as Array<[string, string]>);
 
-const stylesPath = resolve(import.meta.dirname, 'src/styles.css');
+const globalStyles = ['tokens', 'base'].map((name) =>
+  readFileSync(resolve(import.meta.dirname, 'src/styles', `${name}.css`), 'utf8'),
+);
 
 export default defineConfig({
   plugins: [
     react({ compiler: { target: '19' } }),
     {
-      generateBundle() {
-        this.emitFile({
-          fileName: 'styles.css',
-          source: readFileSync(stylesPath),
-          type: 'asset',
-        });
+      generateBundle(_, bundle) {
+        const stylesheet = Object.values(bundle).find(
+          (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css'),
+        );
+        const source = `@layer tokens, base, components;\n${globalStyles.join('\n')}\n`;
+        if (stylesheet?.type === 'asset') {
+          stylesheet.source = `${source}${String(stylesheet.source)}`;
+          return;
+        }
+        this.emitFile({ fileName: 'styles.css', source, type: 'asset' });
       },
+      enforce: 'post',
       name: 'ming-components-styles',
     },
   ],

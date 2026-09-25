@@ -1,3 +1,4 @@
+import styles from './resource_editor.module.css';
 import { cn } from '../../../lib/cn';
 import { Button } from '../../atoms/button';
 
@@ -48,26 +49,26 @@ export function ResourceEditor({
     onSave();
   }
   return (
-    <form className={cn('ming-resource-editor', className)} onSubmit={submit}>
-      <header className="ming-resource-editor__header">
+    <form className={cn(styles['ming-resource-editor'], className)} onSubmit={submit}>
+      <header className={styles['ming-resource-editor__header']}>
         <div>
           <h2>{resourceTitle}</h2>
           {description ? (
-            <div className="ming-resource-editor__description">{description}</div>
+            <div className={styles['ming-resource-editor__description']}>{description}</div>
           ) : null}
         </div>
-        <div aria-live="polite" className="ming-resource-editor__state">
+        <div aria-live="polite" className={styles['ming-resource-editor__state']}>
           {status ?? (dirty ? 'Unsaved changes' : 'Saved')}
         </div>
       </header>
-      {error ? <div className="ming-resource-editor__error">{error}</div> : null}
-      <div className="ming-resource-editor__layout">
-        <main className="ming-resource-editor__main">{children}</main>
-        {aside ? <aside className="ming-resource-editor__aside">{aside}</aside> : null}
+      {error ? <div className={styles['ming-resource-editor__error']}>{error}</div> : null}
+      <div className={styles['ming-resource-editor__layout']}>
+        <div className={styles['ming-resource-editor__main']}>{children}</div>
+        {aside ? <aside className={styles['ming-resource-editor__aside']}>{aside}</aside> : null}
       </div>
-      <footer className="ming-resource-editor__actions">
+      <footer className={styles['ming-resource-editor__actions']}>
         {actions}
-        <span className="ming-resource-editor__spacer" />
+        <span className={styles['ming-resource-editor__spacer']} />
         {onDelete ? (
           <Button disabled={pending} onClick={onDelete} type="button" variant="destructive">
             {deleting ? 'Deleting…' : deleteLabel}

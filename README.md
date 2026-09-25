@@ -25,9 +25,11 @@ Consumers such as the `qmenut` and `roncalphoto` repositories install it from th
    bun add @jmurga97/components
    ```
 
-Every push to `main` automatically increments the patch version, tags the release and publishes
-`@jmurga97/components` under the `latest` tag. The bumped `package.json` is committed back by
-`github-actions[bot]`, so pull before bumping versions locally.
+Every push to `main` runs release checks and publishes `@jmurga97/components` under the `latest`
+tag. If `package.json` has a version without a matching `v*` tag, that exact version is published;
+otherwise the patch version is incremented. The action commits the published version and creates
+its tag. To make a major or minor release, set `package.json` to that version first. Automated
+release commits are skipped by the workflow.
 
 Before the first publication, install a verified release tarball instead:
 
@@ -104,6 +106,9 @@ Use Bun 1.3.6.
 
 ```bash
 bun install
+bun run dev
+bun run test:storybook
+bun run build-storybook
 bun run lint
 bun run check
 bun run test
@@ -111,7 +116,17 @@ bun run build
 bun run package:check
 ```
 
-`test` enforces coverage gates. `package:check` runs publint, inspects every packed export, installs
-the generated tarball into a clean Vite fixture, checks types/CSS/tree shaking/production build,
-then verifies portals and dark mode in Chromium. Publication is a separate, explicitly authorized
-operation.
+`dev` starts Storybook at `http://localhost:6006`. Component stories cover the library’s 27
+components; play-function tests and browser-based accessibility checks run with
+`bun run test:storybook`. The local Storybook MCP endpoint is available at `/mcp` while the dev
+server is running for compatible coding agents. See [Storybook AI setup](https://storybook.js.org/docs/ai)
+for agent configuration. The deployed Worker serves the static catalog; MCP stays local to dev.
+
+`test` runs the unit suite and enforces its coverage gates. `package:check` runs publint, inspects
+every packed export, installs the generated tarball into a clean Vite fixture, checks
+types/CSS/tree shaking/production build, then verifies portals and dark mode in Chromium.
+`build-storybook` creates the static catalog in `storybook-static`; GitHub Actions deploys that
+directory to the `ming-components-storybook` Cloudflare Worker after verification succeeds on
+`main`. Configure `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` as repository secrets before
+the first deployment. Visual regression testing is not enabled. Package publication runs
+automatically on pushes to `main` after the release checks.

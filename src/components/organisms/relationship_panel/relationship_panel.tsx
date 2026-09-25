@@ -1,3 +1,4 @@
+import styles from './relationship_panel.module.css';
 import { cn } from '../../../lib/cn';
 
 export interface RelationshipPanelItem {
@@ -24,10 +25,10 @@ export function RelationshipPanel({
   title,
 }: RelationshipPanelProps): React.JSX.Element {
   return (
-    <section className={cn('ming-relationship-panel', className)}>
+    <section className={cn(styles['ming-relationship-panel'], className)}>
       <h3>{title}</h3>
       {items.length === 0 ? (
-        <p className="ming-relationship-panel__empty">{emptyLabel}</p>
+        <p className={styles['ming-relationship-panel__empty']}>{emptyLabel}</p>
       ) : (
         <ul>
           {items.map((item) => (

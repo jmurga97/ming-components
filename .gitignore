@@ -1,5 +1,9 @@
 dist/
 coverage/
+storybook-static/
 node_modules/
+.wrangler/
 *.tgz
 .DS_Store
+
+*storybook.log

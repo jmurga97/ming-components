@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
+import styles from './field.module.css';
 import { Field } from './field';
 import { Input } from '../input';
 
@@ -38,7 +39,7 @@ describe('Field', () => {
 
     const marker = screen.getByText('*', { normalizer: (text) => text.trim() });
     expect(marker).toHaveAttribute('aria-hidden', 'true');
-    expect(marker.parentElement).toHaveClass('ming-field__label');
+    expect(marker.parentElement).toHaveClass(cssModuleClass(styles, 'ming-field__label'));
   });
 
   it('labels optional fields without the asterisk', () => {

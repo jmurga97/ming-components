@@ -1,0 +1,37 @@
+@layer components {
+  .ming-status-region {
+    position: fixed;
+    z-index: 90;
+    inset: auto var(--ming-space-4) var(--ming-space-4) auto;
+    display: flex;
+    width: min(calc(100% - 2rem), 24rem);
+    align-items: center;
+    gap: var(--ming-space-3);
+    border: 1px solid var(--input);
+    border-radius: var(--radius);
+    background: var(--popover);
+    box-shadow: none;
+    color: var(--popover-foreground);
+    padding: var(--ming-space-2) var(--ming-space-2) var(--ming-space-2) var(--ming-space-4);
+    --ming-button-icon-size: 2rem;
+    --ming-button-foreground: var(--muted-foreground);
+    --ming-button-hover-foreground: var(--foreground);
+    --ming-button-hover-background: transparent;
+  }
+  .ming-status-region::before {
+    width: var(--ming-dot);
+    height: var(--ming-dot);
+    flex: 0 0 auto;
+    background: var(--ming-service);
+    content: "";
+  }
+  .ming-status-region__message {
+    flex: 1;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+  .ming-status-region__content {
+    display: grid;
+    gap: var(--ming-space-1);
+  }
+}

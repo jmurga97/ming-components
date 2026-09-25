@@ -13,7 +13,7 @@ La librería compila con React Compiler al construir el artefacto publicado:
 
 - `oxc-transform-react` como peer opcional de `@vitejs/plugin-react`, activado con `react({ compiler: { target: '19' } })` en el build de la librería, el playground y Vitest.
 - Sin Babel: se usa la ruta OXC nativa del plugin.
-- `eslint-plugin-react-hooks` en el preset `recommended-latest`, que incluye las reglas de diagnóstico del compilador (`purity`, `immutability`, `refs`, `set-state-in-render`, etc.). Las violaciones se corrigen; no se suprimen.
+- Biome valida las reglas de React Compiler con `useReactCompiler` y activa sus reglas recomendadas para hooks. Las violaciones se corrigen; no se suprimen.
 
 Las aplicaciones consumidoras reciben salida ya memoizada sin configurar nada. Quien prefiera compilar por su cuenta puede desactivarlo en su propio pipeline; los exports públicos no cambian.
 

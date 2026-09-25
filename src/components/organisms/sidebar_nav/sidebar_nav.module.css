@@ -1,0 +1,21 @@
+@layer components {
+  .ming-sidebar-nav {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: var(--ming-space-5);
+    background: var(--background);
+    padding: var(--ming-space-4) var(--ming-space-3);
+  }
+  .ming-sidebar-nav__header {
+    padding: var(--ming-space-2) var(--ming-space-2) var(--ming-space-4);
+    border-block-end: 1px solid var(--border);
+  }
+  .ming-sidebar-nav__footer {
+    display: grid;
+    gap: var(--ming-space-3);
+    margin-block-start: auto;
+    padding-block-start: var(--ming-space-4);
+    border-block-start: 1px solid var(--border);
+  }
+}

@@ -62,13 +62,14 @@ jobs:
         if: steps.guard.outputs.skip != 'true'
         id: version
         run: |
-          next="$(node -p "const [major, minor, patch] = require('./package.json').version.split('.').map(Number); [major, minor, patch + 1].join('.')")"
-          if git ls-remote --exit-code --tags origin "refs/tags/v${next}" > /dev/null 2>&1; then
-            echo "Tag v${next} already exists; nothing to release."
-            echo 'done=true' >> "${GITHUB_OUTPUT}"
+          current="$(node -p "require('./package.json').version")"
+          if git ls-remote --exit-code --tags origin "refs/tags/v${current}" > /dev/null 2>&1; then
+            next="$(node -p "const [major, minor, patch] = '${current}'.split('.').map(Number); [major, minor, patch + 1].join('.')")"
           else
-            echo "version=${next}" >> "${GITHUB_OUTPUT}"
+            next="${current}"
           fi
+          echo "Releasing ${next}."
+          echo "version=${next}" >> "${GITHUB_OUTPUT}"
 
       - name: Apply version and scope
         if: steps.guard.outputs.skip != 'true' && steps.version.outputs.version != ''

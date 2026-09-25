@@ -1,0 +1,18 @@
+@layer components {
+  .ming-search-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    --ming-input-padding-inline-end: 2.75rem;
+    --ming-button-icon-size: 2rem;
+    --ming-button-foreground: var(--muted-foreground);
+    --ming-button-hover-foreground: var(--foreground);
+    --ming-button-hover-background: transparent;
+  }
+  .ming-search-field__clear-action {
+    position: absolute;
+    inset-inline-end: var(--ming-space-1);
+    display: flex;
+    border-radius: var(--ming-radius-control);
+  }
+}

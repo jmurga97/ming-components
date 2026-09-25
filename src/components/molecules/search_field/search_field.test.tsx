@@ -95,10 +95,10 @@ describe('SearchField', () => {
     expect(screen.getByRole('button', { name: 'Clear search' })).toBeDisabled();
   });
 
-  it('exposes the region as a search landmark', () => {
-    render(<ControlledSearchField />);
+  it('uses the native search landmark', () => {
+    const { container } = render(<ControlledSearchField />);
 
-    expect(screen.getByRole('search')).toBeInTheDocument();
+    expect(container.querySelector('search')).toBeInTheDocument();
   });
 
   it('has no detectable accessibility violations with a pending query', async () => {

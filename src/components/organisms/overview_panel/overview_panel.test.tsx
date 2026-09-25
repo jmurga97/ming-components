@@ -1,10 +1,16 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
+import statusTextStyles from '../../atoms/status_text/status_text.module.css';
 import { OverviewPanel } from './overview_panel';
 
 const STATS = [
-  { description: 'Last 30 days', id: 'sessions', label: 'Sessions', value: '12' },
+  {
+    description: 'Last 30 days',
+    id: 'sessions',
+    label: 'Sessions',
+    value: '12',
+  },
   { id: 'photos', label: 'Photos', value: '184' },
 ];
 
@@ -52,7 +58,9 @@ describe('OverviewPanel', () => {
       />,
     );
 
-    expect(screen.getByRole('status')).toHaveClass('ming-status-text--success');
+    expect(screen.getByRole('status')).toHaveClass(
+      cssModuleClass(statusTextStyles, 'ming-status-text--success'),
+    );
     expect(screen.getByRole('status')).toHaveTextContent('Live data');
   });
 

@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
 import { Input } from '../input';
+import styles from './label.module.css';
 import { Label } from './label';
 
 describe('Label', () => {
@@ -30,7 +31,7 @@ describe('Label', () => {
   it('merges className onto the label element', () => {
     render(<Label className="extra">Tone</Label>);
 
-    expect(screen.getByText('Tone')).toHaveClass('ming-label', 'extra');
+    expect(screen.getByText('Tone')).toHaveClass(cssModuleClass(styles, 'ming-label'), 'extra');
   });
 
   it('has no detectable accessibility violations', async () => {

@@ -1,13 +1,16 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
+import styles from './inline_message.module.css';
 import { InlineMessage } from './inline_message';
 
 describe('InlineMessage', () => {
   it('renders title and message with the info default', () => {
     render(<InlineMessage message="Menu data is being refreshed." title="Loading" />);
 
-    expect(screen.getByRole('status')).toHaveClass('ming-inline-message--info');
+    expect(screen.getByRole('status')).toHaveClass(
+      cssModuleClass(styles, 'ming-inline-message--info'),
+    );
     expect(screen.getByText('Loading').tagName).toBe('STRONG');
     expect(screen.getByText('Menu data is being refreshed.')).toBeInTheDocument();
   });
@@ -26,13 +29,16 @@ describe('InlineMessage', () => {
       </>,
     );
 
-    expect(screen.getByRole('alert')).toHaveClass('ming-inline-message--error');
+    expect(screen.getByRole('alert')).toHaveClass(
+      cssModuleClass(styles, 'ming-inline-message--error'),
+    );
     expect(screen.getByRole('status')).toHaveTextContent('All changes live');
   });
 
   it('applies each tone variant', () => {
     const tones = ['info', 'success', 'warning', 'error'] as const;
     render(
+      // biome-ignore lint/complexity/noUselessFragments: Testing Library render requires one React element.
       <>
         {tones.map((tone) => (
           <InlineMessage key={tone} message={tone} tone={tone} />
@@ -40,8 +46,8 @@ describe('InlineMessage', () => {
       </>,
     );
     for (const tone of tones) {
-      expect(screen.getByText(tone).closest('.ming-inline-message')).toHaveClass(
-        `ming-inline-message--${tone}`,
+      expect(screen.getByText(tone).closest('[role]')).toHaveClass(
+        cssModuleClass(styles, `ming-inline-message--${tone}`),
       );
     }
   });

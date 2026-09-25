@@ -1,0 +1,10 @@
+/* The 24-unit pixel grid stays crisp only at 12px and 24px. */
+.ming-icon {
+  display: inline-block;
+  width: var(--ming-icon-size, var(--ming-icon));
+  height: var(--ming-icon-size, var(--ming-icon));
+  flex: 0 0 var(--ming-icon-size, var(--ming-icon));
+  margin-inline: var(--ming-icon-margin-inline, 0);
+  vertical-align: middle;
+  shape-rendering: crispEdges;
+}

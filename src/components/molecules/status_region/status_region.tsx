@@ -1,3 +1,4 @@
+import styles from './status_region.module.css';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -49,9 +50,14 @@ export function StatusRegion({
   if (!open || typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className="ming-status-region" data-ming-portal="status">
+    <div className={styles['ming-status-region']} data-ming-portal="status">
+      {/* biome-ignore lint/a11y/noStaticElementInteractions lint/a11y/noNoninteractiveElementInteractions: Pauses auto-dismiss while hovered or focused. */}
       <div
-        className={cn(inlineMessageVariants({ tone }), 'ming-status-region__message', className)}
+        className={cn(
+          inlineMessageVariants({ tone }),
+          styles['ming-status-region__message'],
+          className,
+        )}
         onBlur={() => {
           setPaused(false);
         }}
@@ -66,10 +72,10 @@ export function StatusRegion({
         }}
         role={tone === 'error' ? 'alert' : 'status'}
       >
-        <div className="ming-inline-message__content">{label}</div>
+        <div className={styles['ming-status-region__content']}>{label}</div>
         <Button
           aria-label={dismissLabel}
-          className="ming-status-region__dismiss"
+          iconOnly
           onClick={() => {
             onOpenChange(false);
           }}

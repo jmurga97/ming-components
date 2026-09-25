@@ -2,6 +2,8 @@ import axe from 'axe-core';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { cssModuleClass } from '../../../test/helpers';
+import styles from './button.module.css';
 import { Button } from './button';
 
 describe('Button', () => {
@@ -25,7 +27,10 @@ describe('Button', () => {
     );
     const button = screen.getByRole('button', { name: 'Delete' });
 
-    expect(button).toHaveClass('ming-button--lg', 'ming-button--destructive');
+    expect(button).toHaveClass(
+      cssModuleClass(styles, 'ming-button--lg'),
+      cssModuleClass(styles, 'ming-button--destructive'),
+    );
     await user.click(button);
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -37,5 +42,17 @@ describe('Button', () => {
     });
 
     expect(results.violations).toEqual([]);
+  });
+
+  it('supports icon-only controls', () => {
+    render(
+      <Button aria-label="Close" iconOnly>
+        ×
+      </Button>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Close' })).toHaveClass(
+      cssModuleClass(styles, 'ming-button--icon-only'),
+    );
   });
 });

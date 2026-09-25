@@ -2,7 +2,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 
-import { PortalHost, axeVerify } from '../../../test/helpers';
+import { PortalHost, axeVerify, cssModuleClass } from '../../../test/helpers';
+import styles from './dropdown_menu.module.css';
 import { DropdownMenu } from './dropdown_menu';
 
 function ControlledHarness(): React.JSX.Element {
@@ -104,8 +105,8 @@ describe('DropdownMenu', () => {
     );
 
     expect(screen.getByRole('menuitem', { name: 'Remove' })).toHaveClass(
-      'ming-dropdown-menu__item--destructive',
-      'ming-dropdown-menu__item--separated',
+      cssModuleClass(styles, 'ming-dropdown-menu__item--destructive'),
+      cssModuleClass(styles, 'ming-dropdown-menu__item--separated'),
     );
   });
 

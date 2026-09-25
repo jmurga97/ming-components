@@ -1,0 +1,57 @@
+@layer components {
+  .ming-switch:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-switch-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ming-space-2);
+    color: var(--foreground);
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .ming-switch {
+    display: inline-flex;
+    width: 2.5rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
+    align-items: center;
+    border: 1px solid var(--input);
+    border-radius: var(--ming-radius-pill);
+    background: transparent;
+    padding-inline: 0.125rem;
+    transition:
+      background-color var(--ming-duration-fast) var(--ming-ease),
+      border-color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-switch[data-checked] {
+    border-color: var(--primary);
+    background: var(--primary);
+  }
+  .ming-switch[data-disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .ming-switch__thumb {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex: 0 0 auto;
+    border-radius: var(--ming-radius-pill);
+    background: var(--muted-foreground);
+    transform: translateX(0.0625rem);
+    transition:
+      transform var(--ming-duration-fast) var(--ming-ease),
+      background-color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-switch[data-checked] .ming-switch__thumb {
+    background: var(--primary-foreground);
+    transform: translateX(1.25rem);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-switch,
+    .ming-switch__thumb {
+      transition-duration: 0.01ms;
+    }
+  }
+}

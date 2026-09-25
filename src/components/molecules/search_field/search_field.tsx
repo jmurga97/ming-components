@@ -1,3 +1,4 @@
+import styles from './search_field.module.css';
 import { Button } from '../../atoms/button';
 import { Input } from '../../atoms/input';
 import { CloseIcon } from '../../internal/icon';
@@ -23,9 +24,8 @@ export function SearchField({
   ...props
 }: SearchFieldProps): React.JSX.Element {
   return (
-    <div className={cn('ming-search-field', className)} role="search">
+    <search className={cn(styles['ming-search-field'], className)}>
       <Input
-        className="ming-search-field__input"
         disabled={disabled}
         onValueChange={onValueChange}
         placeholder={placeholder}
@@ -34,20 +34,22 @@ export function SearchField({
         {...props}
       />
       {value ? (
-        <Button
-          aria-label={clearLabel}
-          className="ming-search-field__clear"
-          disabled={disabled}
-          onClick={() => {
-            if (onClear) onClear();
-            else onValueChange('');
-          }}
-          size="sm"
-          variant="ghost"
-        >
-          <CloseIcon />
-        </Button>
+        <span className={styles['ming-search-field__clear-action']}>
+          <Button
+            aria-label={clearLabel}
+            disabled={disabled}
+            iconOnly
+            onClick={() => {
+              if (onClear) onClear();
+              else onValueChange('');
+            }}
+            size="sm"
+            variant="ghost"
+          >
+            <CloseIcon />
+          </Button>
+        </span>
       ) : null}
-    </div>
+    </search>
   );
 }

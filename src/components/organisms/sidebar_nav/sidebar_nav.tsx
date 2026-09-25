@@ -1,3 +1,4 @@
+import styles from './sidebar_nav.module.css';
 import { NavList } from '../../molecules/nav_list';
 import { cn } from '../../../lib/cn';
 
@@ -26,11 +27,11 @@ export function SidebarNav({
   onNavigate,
 }: SidebarNavProps): React.JSX.Element {
   return (
-    <nav aria-label={ariaLabel} className={cn('ming-sidebar-nav', className)}>
-      {header ? <div className="ming-sidebar-nav__header">{header}</div> : null}
+    <nav aria-label={ariaLabel} className={cn(styles['ming-sidebar-nav'], className)}>
+      {header ? <div className={styles['ming-sidebar-nav__header']}>{header}</div> : null}
       <NavList collapsed={collapsed} items={items} onNavigate={onNavigate} />
       {footerItems.length || footer ? (
-        <footer className="ming-sidebar-nav__footer">
+        <footer className={styles['ming-sidebar-nav__footer']}>
           {footerItems.length ? (
             <NavList collapsed={collapsed} items={footerItems} onNavigate={onNavigate} />
           ) : null}

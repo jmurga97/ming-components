@@ -5,7 +5,12 @@ import { axeVerify } from '../../../test/helpers';
 import { MediaBrowser } from './media_browser';
 
 const ITEMS = [
-  { id: 'portrait', src: '/portrait.jpg', thumbnailSrc: '/portrait-thumb.jpg', alt: 'Portrait' },
+  {
+    id: 'portrait',
+    src: '/portrait.jpg',
+    thumbnailSrc: '/portrait-thumb.jpg',
+    alt: 'Portrait',
+  },
   { id: 'kitchen', src: '/kitchen.jpg', alt: 'Kitchen' },
 ];
 
@@ -75,7 +80,12 @@ describe('MediaBrowser', () => {
     render(
       <MediaBrowser
         items={[
-          { caption: 'Evening service', id: 'dining', src: '/dining.jpg', alt: 'Dining room' },
+          {
+            caption: 'Evening service',
+            id: 'dining',
+            src: '/dining.jpg',
+            alt: 'Dining room',
+          },
         ]}
       />,
     );

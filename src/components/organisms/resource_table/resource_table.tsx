@@ -1,3 +1,4 @@
+import styles from './resource_table.module.css';
 import { cn } from '../../../lib/cn';
 import { SortIcon } from '../../internal/icon';
 
@@ -107,22 +108,24 @@ export function ResourceTable<Row>({
   }
 
   if (error) {
-    return <div className={cn('ming-resource-table__error', className)}>{error}</div>;
+    return <div className={cn(styles['ming-resource-table__error'], className)}>{error}</div>;
   }
 
   return (
     <div
       aria-busy={loading || refetching || undefined}
-      className={cn('ming-resource-table', className)}
+      className={cn(styles['ming-resource-table'], className)}
       data-density={density}
       data-responsive={responsive}
     >
-      {refetching ? <span className="ming-visually-hidden">Updating resources</span> : null}
+      {refetching ? (
+        <span className={styles['ming-resource-table__announcement']}>Updating resources</span>
+      ) : null}
       <table aria-label={ariaLabel}>
         <thead>
           <tr>
             {selectable ? (
-              <th className="ming-resource-table__selection" scope="col">
+              <th className={styles['ming-resource-table__selection']} scope="col">
                 <input
                   aria-label={selectionLabels.page ?? 'Select current page'}
                   checked={allPageSelected}
@@ -146,7 +149,7 @@ export function ResourceTable<Row>({
                 >
                   {column.sortable ? (
                     <button
-                      className="ming-resource-table__sort"
+                      className={styles['ming-resource-table__sort']}
                       onClick={() => {
                         onSortChange?.({
                           columnId: column.id,
@@ -172,14 +175,14 @@ export function ResourceTable<Row>({
         <tbody>
           {loading && rows.length === 0 ? (
             <tr>
-              <td className="ming-resource-table__state" colSpan={columnCount}>
+              <td className={styles['ming-resource-table__state']} colSpan={columnCount}>
                 {loadingLabel}
               </td>
             </tr>
           ) : null}
           {!loading && rows.length === 0 ? (
             <tr>
-              <td className="ming-resource-table__state" colSpan={columnCount}>
+              <td className={styles['ming-resource-table__state']} colSpan={columnCount}>
                 {emptyState}
               </td>
             </tr>
@@ -201,7 +204,7 @@ export function ResourceTable<Row>({
                 tabIndex={onRowActivate ? 0 : undefined}
               >
                 {selectable ? (
-                  <td className="ming-resource-table__selection" data-label="">
+                  <td className={styles['ming-resource-table__selection']} data-label="">
                     <input
                       aria-label={selectionLabels.row(row)}
                       checked={selected}

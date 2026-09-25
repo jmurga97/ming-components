@@ -65,7 +65,12 @@ function assertExportsAligned(): void {
 }
 
 function run(command: string[], cwd: string): void {
-  const result = Bun.spawnSync({ cmd: command, cwd, stderr: 'inherit', stdout: 'inherit' });
+  const result = Bun.spawnSync({
+    cmd: command,
+    cwd,
+    stderr: 'inherit',
+    stdout: 'inherit',
+  });
   if (result.exitCode !== 0) throw new Error(`${command.join(' ')} failed.`);
 }
 
@@ -127,7 +132,9 @@ try {
   }
 
   const fixtureRoot = join(temporaryDirectory, 'vite-consumer');
-  cpSync(join(packageRoot, 'fixtures/vite-consumer'), fixtureRoot, { recursive: true });
+  cpSync(join(packageRoot, 'fixtures/vite-consumer'), fixtureRoot, {
+    recursive: true,
+  });
   const fixtureManifestPath = join(fixtureRoot, 'package.json');
   const fixtureManifest = JSON.parse(readFileSync(fixtureManifestPath, 'utf8')) as FixtureManifest;
   fixtureManifest.dependencies['@ming/components'] = `file:${archivePath}`;
@@ -144,11 +151,20 @@ try {
   if (javascript.includes('No resources available.')) {
     throw new Error('Root exports did not tree-shake the unused ResourceTable implementation.');
   }
-  const stylesheet = readdirSync(assetDirectory).find((filename) => filename.endsWith('.css'));
+  const stylesheets = readdirSync(assetDirectory).filter((filename) => filename.endsWith('.css'));
+  if (stylesheets.length !== 1) {
+    throw new Error(`Expected one extracted stylesheet, found ${stylesheets.length}.`);
+  }
+  const stylesheet = stylesheets.at(0);
   if (!stylesheet) throw new Error('The fixture build did not emit package CSS.');
   const css = readFileSync(join(assetDirectory, stylesheet), 'utf8');
-  if (!css.includes('.ming-button') || !css.includes('.dark')) {
-    throw new Error('The fixture build is missing component or dark-mode CSS.');
+  if (
+    !css.includes('ming-button') ||
+    !css.includes('.dark') ||
+    !css.includes('--background') ||
+    !css.includes('z-index:80')
+  ) {
+    throw new Error('The fixture build is missing component, theme, or overlay CSS.');
   }
 
   const port = 42_000 + Math.floor(Math.random() * 1_000);
@@ -166,8 +182,22 @@ try {
       const page = await browser.newPage();
       await page.goto(url);
       await page.getByRole('listbox').waitFor();
-      if ((await page.locator('#root .ming-select__popup').count()) !== 0) {
+      if ((await page.locator('#root [role="listbox"]').count()) !== 0) {
         throw new Error('The fixture Select did not render through a portal.');
+      }
+      const hiddenLabel = await page.getByText('Fixture navigation').evaluate((element) => {
+        const style = getComputedStyle(element.parentElement ?? element);
+        return [style.position, style.width, style.clipPath].join('|');
+      });
+      if (hiddenLabel !== 'absolute|1px|inset(50%)') {
+        throw new Error('The fixture did not package the component-owned visually hidden style.');
+      }
+      const header = page.locator('#root header');
+      if (
+        (await header.evaluate((element) => getComputedStyle(element).paddingInlineStart)) !==
+        '32px'
+      ) {
+        throw new Error('The fixture desktop layout did not apply its responsive header spacing.');
       }
       await page.keyboard.press('Escape');
       await page.getByRole('listbox').waitFor({ state: 'hidden' });
@@ -180,6 +210,14 @@ try {
       );
       if (!(await page.locator('html.dark').count()) || initialBackground === darkBackground) {
         throw new Error('The fixture did not apply the packaged dark theme.');
+      }
+      await page.setViewportSize({ width: 600, height: 800 });
+      await page.getByRole('dialog').waitFor();
+      if (
+        (await header.evaluate((element) => getComputedStyle(element).paddingInlineStart)) !==
+        '16px'
+      ) {
+        throw new Error('The fixture did not apply its packaged mobile layout.');
       }
     } finally {
       await browser.close();

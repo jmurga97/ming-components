@@ -1,6 +1,6 @@
 {
   "name": "@jmurga97/components",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "React components for quiet, accessible operational interfaces.",
   "license": "MIT",
   "type": "module",
@@ -138,15 +138,18 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev": "vite --config vite.playground.config.ts",
-    "lint": "bun run lint:prettier && bun run lint:eslint",
-    "lint:prettier": "prettier --check .",
-    "lint:eslint": "eslint .",
+    "dev": "storybook dev -p 6006 --no-open",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
     "check": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --project=unit",
+    "test:storybook": "vitest run --project=storybook --coverage.enabled=false",
     "build": "rm -rf dist && vite build && tsc -p tsconfig.build.json && bun scripts/flatten_declarations.ts",
     "package:check": "bun run build && publint && bun scripts/check_package.ts",
-    "prepublishOnly": "bun run lint && bun run check && bun run test && bun run package:check"
+    "prepublishOnly": "bun run lint && bun run check && bun run test && bun run package:check",
+    "build-storybook": "storybook build",
+    "deploy:storybook": "wrangler deploy"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -159,7 +162,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
+    "@biomejs/biome": "^2.5.14",
     "@playwright/test": "1.55.0",
     "@tailwindcss/vite": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
@@ -171,20 +174,22 @@
     "@vitejs/plugin-react": "^6.0.4",
     "@vitest/coverage-v8": "4.1.11",
     "axe-core": "^4.12.1",
-    "eslint": "^10.8.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.8.0",
     "jsdom": "^26.1.0",
     "oxc-transform-react": "^0.147.0",
-    "prettier": "^3.9.6",
     "publint": "^0.3.22",
     "tailwindcss": "^4.1.18",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0",
     "vite": "^8.1.5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "storybook": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-mcp": "^10.6.0",
+    "@vitest/browser-playwright": "4.1.11",
+    "playwright": "1.55.0",
+    "wrangler": "latest"
   },
   "packageManager": "bun@1.3.6",
   "engines": {

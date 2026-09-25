@@ -1,3 +1,4 @@
+import styles from './tag_list.module.css';
 import { cn } from '../../../lib/cn';
 
 export interface TagListItem {
@@ -25,31 +26,34 @@ export function TagList({
   value = [],
 }: TagListProps): React.JSX.Element {
   const selected = new Set(value);
-  return (
-    <div
-      aria-label={ariaLabel}
-      className={cn('ming-tag-list', className)}
-      role={interactive ? 'group' : undefined}
-    >
-      {items.map((item) =>
-        interactive ? (
-          <button
-            aria-pressed={selected.has(item.id)}
-            disabled={disabled || item.disabled}
-            key={item.id}
-            onClick={() => {
-              onValueChange?.(
-                selected.has(item.id) ? value.filter((id) => id !== item.id) : [...value, item.id],
-              );
-            }}
-            type="button"
-          >
-            {item.label}
-          </button>
-        ) : (
-          <span key={item.id}>{item.label}</span>
-        ),
-      )}
-    </div>
+  const content = items.map((item) =>
+    interactive ? (
+      <button
+        aria-pressed={selected.has(item.id)}
+        disabled={disabled || item.disabled}
+        key={item.id}
+        onClick={() => {
+          onValueChange?.(
+            selected.has(item.id) ? value.filter((id) => id !== item.id) : [...value, item.id],
+          );
+        }}
+        type="button"
+      >
+        {item.label}
+      </button>
+    ) : (
+      <span key={item.id}>{item.label}</span>
+    ),
   );
+
+  if (interactive) {
+    return (
+      <fieldset className={cn(styles['ming-tag-list'], className)}>
+        <legend className={styles['ming-tag-list__legend']}>{ariaLabel}</legend>
+        {content}
+      </fieldset>
+    );
+  }
+
+  return <div className={cn(styles['ming-tag-list'], className)}>{content}</div>;
 }

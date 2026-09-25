@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
-import { axeVerify } from '../../../test/helpers';
+import { axeVerify, cssModuleClass } from '../../../test/helpers';
+import styles from './status_text.module.css';
 import { StatusText } from './status_text';
 
 describe('StatusText', () => {
@@ -9,7 +10,7 @@ describe('StatusText', () => {
 
     const status = screen.getByRole('status');
     expect(status).toHaveAttribute('aria-live', 'polite');
-    expect(status).toHaveClass('ming-status-text--neutral');
+    expect(status).toHaveClass(cssModuleClass(styles, 'ming-status-text'));
     expect(status).toHaveTextContent('Autosave off');
   });
 
@@ -22,13 +23,14 @@ describe('StatusText', () => {
 
     const status = screen.getByRole('status', { name: '' });
     expect(status).toHaveAttribute('aria-live', 'assertive');
-    expect(status).toHaveClass('ming-status-text--warning');
+    expect(status).toHaveClass(cssModuleClass(styles, 'ming-status-text--warning'));
     expect(status).toHaveTextContent('Waiting');
   });
 
   it('applies each tone variant', () => {
     const tones = ['neutral', 'info', 'success', 'warning', 'error'] as const;
     render(
+      // biome-ignore lint/complexity/noUselessFragments: Testing Library render requires one React element.
       <>
         {tones.map((tone) => (
           <StatusText key={tone} label={tone} tone={tone} />
@@ -36,7 +38,11 @@ describe('StatusText', () => {
       </>,
     );
     for (const tone of tones) {
-      expect(screen.getByText(tone)).toHaveClass(`ming-status-text--${tone}`);
+      const status = screen.getByText(tone);
+      expect(status).toHaveClass(cssModuleClass(styles, 'ming-status-text'));
+      if (tone !== 'neutral') {
+        expect(status).toHaveClass(cssModuleClass(styles, `ming-status-text--${tone}`));
+      }
     }
   });
 

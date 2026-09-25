@@ -1,0 +1,60 @@
+@layer components {
+  .ming-confirm-action__backdrop {
+    position: fixed;
+    z-index: 80;
+    inset: 0;
+    background: rgb(0 0 0 / 64%);
+    transition: opacity var(--ming-duration-normal) var(--ming-ease);
+  }
+  .ming-confirm-action__viewport {
+    position: fixed;
+    z-index: 81;
+    inset: 0;
+    display: grid;
+    overflow-y: auto;
+    padding: var(--ming-space-4);
+    place-items: center;
+  }
+  .ming-confirm-action {
+    width: min(100%, 28rem);
+    border: 1px solid var(--input);
+    border-radius: var(--radius);
+    background: var(--popover);
+    box-shadow: none;
+    color: var(--popover-foreground);
+    padding: var(--ming-space-5);
+    transition: opacity var(--ming-duration-normal) var(--ming-ease);
+  }
+  .ming-confirm-action[data-starting-style],
+  .ming-confirm-action[data-ending-style],
+  .ming-confirm-action__backdrop[data-starting-style],
+  .ming-confirm-action__backdrop[data-ending-style] {
+    opacity: 0;
+  }
+  .ming-confirm-action__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+  .ming-confirm-action__description {
+    margin: var(--ming-space-2) 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+  .ming-confirm-action__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ming-space-2);
+    margin-block-start: var(--ming-space-6);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-confirm-action,
+    .ming-confirm-action__backdrop {
+      transition-duration: 0.01ms;
+    }
+  }
+}

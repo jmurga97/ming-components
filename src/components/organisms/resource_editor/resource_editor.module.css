@@ -1,0 +1,94 @@
+@layer components {
+  .ming-resource-editor {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+  }
+
+  .ming-resource-editor__header,
+  .ming-resource-editor__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--ming-space-3);
+    padding: var(--ming-space-4) var(--ming-space-5);
+  }
+
+  .ming-resource-editor__header {
+    justify-content: space-between;
+    border-block-end: 1px solid var(--border);
+  }
+
+  .ming-resource-editor__header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+
+  .ming-resource-editor__header h2 {
+    font-size: 1.25rem;
+  }
+
+  .ming-resource-editor__description,
+  .ming-resource-editor__state {
+    color: var(--muted-foreground);
+  }
+
+  .ming-resource-editor__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+  }
+
+  .ming-resource-editor__main,
+  .ming-resource-editor__aside {
+    padding: var(--ming-space-5);
+  }
+
+  .ming-resource-editor__aside {
+    border-inline-start: 1px solid var(--border);
+    background: var(--background);
+  }
+
+  .ming-resource-editor__error {
+    padding: var(--ming-space-3) var(--ming-space-5);
+    border-block-end: 1px solid var(--destructive);
+    background: var(--card);
+    color: var(--destructive);
+    font-size: 0.875rem;
+  }
+
+  .ming-resource-editor__actions {
+    position: sticky;
+    z-index: 2;
+    inset-block-end: 0;
+    border-block-start: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .ming-resource-editor__spacer {
+    flex: 1;
+  }
+
+  @media (max-width: 56rem) {
+    .ming-resource-editor__layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 56rem) {
+    .ming-resource-editor__aside {
+      border-block-start: 1px solid var(--border);
+      border-inline-start: 0;
+    }
+  }
+
+  @media (max-width: 56rem) {
+    .ming-resource-editor__actions {
+      flex-wrap: wrap;
+    }
+  }
+}

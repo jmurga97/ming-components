@@ -104,13 +104,18 @@ describe('NavList', () => {
       <NavList
         collapsed
         items={[
-          { description: 'Seasonal plates', icon: <span>▣</span>, id: 'menu', label: 'Menu' },
+          {
+            description: 'Seasonal plates',
+            icon: <span>▣</span>,
+            id: 'menu',
+            label: 'Menu',
+          },
         ]}
       />,
     );
 
     const copy = screen.getByText('Menu').parentElement;
-    expect(copy).toHaveClass('ming-visually-hidden');
+    expect(copy).toHaveAttribute('data-collapsed', 'true');
     expect(screen.getByRole('button', { name: /Menu/ })).toBeInTheDocument();
   });
 
@@ -118,7 +123,12 @@ describe('NavList', () => {
     const { container } = render(
       <NavList
         items={[
-          { current: true, href: '/overview', id: 'overview', label: 'Overview' },
+          {
+            current: true,
+            href: '/overview',
+            id: 'overview',
+            label: 'Overview',
+          },
           { id: 'billing', label: 'Billing' },
         ]}
       />,

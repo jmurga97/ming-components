@@ -1,0 +1,36 @@
+@layer components {
+  .ming-input:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-input {
+    width: 100%;
+    border: 1px solid var(--input);
+    border-radius: var(--ming-radius-control);
+    background: var(--card);
+    color: var(--foreground);
+    font: inherit;
+    transition:
+      border-color var(--ming-duration-fast) var(--ming-ease),
+      background-color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-input {
+    min-height: 2.5rem;
+    padding-inline-start: var(--ming-space-3);
+    padding-inline-end: var(--ming-input-padding-inline-end, var(--ming-space-3));
+  }
+  .ming-input::placeholder {
+    color: var(--muted-foreground);
+    opacity: 1;
+  }
+  .ming-input:hover:not(:disabled) {
+    border-color: var(--foreground);
+  }
+  .ming-input[aria-invalid="true"] {
+    border-color: var(--destructive);
+  }
+  .ming-input:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

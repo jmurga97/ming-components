@@ -1,0 +1,51 @@
+@layer components {
+  .ming-checkbox:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ming-space-2);
+    color: var(--foreground);
+    cursor: pointer;
+    line-height: 1.4;
+  }
+  .ming-checkbox {
+    display: inline-grid;
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid var(--input);
+    border-radius: 0;
+    background: var(--card);
+    color: var(--primary-foreground);
+    transition:
+      background-color var(--ming-duration-fast) var(--ming-ease),
+      border-color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-checkbox:not([data-disabled]):hover {
+    border-color: var(--foreground);
+  }
+  .ming-checkbox[data-checked] {
+    border-color: var(--primary);
+    background: var(--primary);
+  }
+  .ming-checkbox[data-disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .ming-checkbox__indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    --ming-icon-size: var(--ming-icon-sm);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-checkbox {
+      transition-duration: 0.01ms;
+    }
+  }
+}

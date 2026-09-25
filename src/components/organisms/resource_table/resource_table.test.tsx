@@ -5,7 +5,13 @@ import userEvent from '@testing-library/user-event';
 import { ResourceTable } from './resource_table';
 
 const rows = [{ id: 'one', name: 'First row' }];
-const columns = [{ id: 'name', header: 'Name', render: (row: (typeof rows)[number]) => row.name }];
+const columns = [
+  {
+    id: 'name',
+    header: 'Name',
+    render: (row: (typeof rows)[number]) => row.name,
+  },
+];
 
 describe('ResourceTable', () => {
   it('reports selected row ids without CustomEvent', async () => {
@@ -49,7 +55,14 @@ describe('ResourceTable', () => {
     render(
       <ResourceTable
         ariaLabel="Resources"
-        columns={[{ id: 'name', header: 'Name', render: (row) => row.name, sortable: true }]}
+        columns={[
+          {
+            id: 'name',
+            header: 'Name',
+            render: (row) => row.name,
+            sortable: true,
+          },
+        ]}
         getRowId={(row) => row.id}
         onSelectionChange={onSelectionChange}
         onSortChange={onSortChange}
@@ -64,7 +77,10 @@ describe('ResourceTable', () => {
     await user.click(screen.getByRole('checkbox', { name: 'Select current page' }));
     await user.click(screen.getByRole('button', { name: /Name/ }));
     expect(onSelectionChange).toHaveBeenCalledWith(['one']);
-    expect(onSortChange).toHaveBeenCalledWith({ columnId: 'name', direction: 'descending' });
+    expect(onSortChange).toHaveBeenCalledWith({
+      columnId: 'name',
+      direction: 'descending',
+    });
   });
 
   it('keeps rows mounted while refetching and activates a row by keyboard', async () => {

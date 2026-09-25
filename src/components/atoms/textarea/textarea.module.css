@@ -1,0 +1,37 @@
+@layer components {
+  .ming-textarea:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .ming-textarea {
+    width: 100%;
+    border: 1px solid var(--input);
+    border-radius: var(--ming-radius-control);
+    background: var(--card);
+    color: var(--foreground);
+    font: inherit;
+    transition:
+      border-color var(--ming-duration-fast) var(--ming-ease),
+      background-color var(--ming-duration-fast) var(--ming-ease);
+  }
+  .ming-textarea {
+    min-height: 7rem;
+    resize: vertical;
+    padding: var(--ming-space-3);
+    line-height: 1.55;
+  }
+  .ming-textarea::placeholder {
+    color: var(--muted-foreground);
+    opacity: 1;
+  }
+  .ming-textarea:hover:not(:disabled) {
+    border-color: var(--foreground);
+  }
+  .ming-textarea[aria-invalid="true"] {
+    border-color: var(--destructive);
+  }
+  .ming-textarea:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

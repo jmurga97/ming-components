@@ -1,3 +1,4 @@
+import styles from './textarea.module.css';
 import { Field } from '@base-ui/react/field';
 
 import { cn } from '../../../lib/cn';
@@ -21,7 +22,7 @@ export function Textarea({
 }: TextareaProps): React.JSX.Element {
   const controlProps = {
     'aria-invalid': ariaInvalid ?? (invalid || undefined),
-    className: cn('ming-textarea', className),
+    className: cn(styles['ming-textarea'], className),
     onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(event);
       if (!event.defaultPrevented) onValueChange?.(event.currentTarget.value);

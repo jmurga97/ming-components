@@ -63,7 +63,7 @@ describe('BulkActions', () => {
 
     expect(screen.getByRole('button', { name: 'Archive' })).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: 'Archive' }).closest('.ming-bulk-actions__actions'),
+      screen.getByRole('button', { name: 'Archive' }).closest('[aria-disabled]'),
     ).toHaveAttribute('aria-disabled', 'true');
 
     await user.click(screen.getByRole('button', { name: 'Clear selection' }));

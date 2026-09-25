@@ -1,3 +1,4 @@
+import styles from './select.module.css';
 import { Select as BaseSelect } from '@base-ui/react/select';
 
 import { CheckIcon, ChevronDownIcon } from '../../internal/icon';
@@ -57,9 +58,12 @@ export function Select({
 }: SelectProps): React.JSX.Element {
   const generatedId = useId();
   const triggerId = id ?? generatedId;
-  const items = options.map((option) => ({ label: option.label, value: option.id }));
+  const items = options.map((option) => ({
+    label: option.label,
+    value: option.id,
+  }));
   return (
-    <div className={cn('ming-select', className)}>
+    <div className={cn(styles['ming-select'], className)}>
       <BaseSelect.Root
         defaultOpen={defaultOpen}
         defaultValue={defaultValue}
@@ -77,31 +81,34 @@ export function Select({
       >
         <BaseSelect.Trigger
           aria-label={ariaLabel}
-          className="ming-select__trigger"
+          className={styles['ming-select__trigger']}
           ref={triggerRef}
         >
           <BaseSelect.Value placeholder={placeholder} />
-          <BaseSelect.Icon aria-hidden="true" className="ming-select__icon">
+          <BaseSelect.Icon aria-hidden="true" className={styles['ming-select__icon']}>
             <ChevronDownIcon />
           </BaseSelect.Icon>
         </BaseSelect.Trigger>
-        <BaseSelect.Portal className="ming-portal" container={portalContainer}>
+        <BaseSelect.Portal container={portalContainer}>
           <BaseSelect.Positioner
             alignItemWithTrigger={false}
-            className="ming-select__positioner"
+            className={styles['ming-select__positioner']}
             sideOffset={4}
           >
-            <BaseSelect.Popup className="ming-select__popup">
-              <BaseSelect.List aria-labelledby={triggerId} className="ming-select__list">
+            <BaseSelect.Popup className={styles['ming-select__popup']}>
+              <BaseSelect.List aria-labelledby={triggerId} className={styles['ming-select__list']}>
                 {options.map((option) => (
                   <BaseSelect.Item
-                    className="ming-select__item"
+                    className={styles['ming-select__item']}
                     disabled={option.disabled}
                     key={option.id}
                     label={option.textValue}
                     value={option.id}
                   >
-                    <BaseSelect.ItemIndicator aria-hidden="true" className="ming-select__indicator">
+                    <BaseSelect.ItemIndicator
+                      aria-hidden="true"
+                      className={styles['ming-select__indicator']}
+                    >
                       <CheckIcon />
                     </BaseSelect.ItemIndicator>
                     <BaseSelect.ItemText>{option.label}</BaseSelect.ItemText>

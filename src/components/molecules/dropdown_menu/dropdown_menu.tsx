@@ -1,3 +1,4 @@
+import styles from './dropdown_menu.module.css';
 import { Menu as BaseMenu } from '@base-ui/react/menu';
 
 import { cn } from '../../../lib/cn';
@@ -50,24 +51,24 @@ export function DropdownMenu({
     >
       <BaseMenu.Trigger
         aria-label={ariaLabel}
-        className={cn('ming-dropdown-menu__trigger', className)}
+        className={cn(styles['ming-dropdown-menu__trigger'], className)}
         ref={triggerRef}
       >
         {trigger}
       </BaseMenu.Trigger>
-      <BaseMenu.Portal className="ming-portal" container={portalContainer}>
+      <BaseMenu.Portal container={portalContainer}>
         <BaseMenu.Positioner
           align={align}
-          className="ming-dropdown-menu__positioner"
+          className={styles['ming-dropdown-menu__positioner']}
           sideOffset={4}
         >
-          <BaseMenu.Popup className="ming-dropdown-menu__popup">
+          <BaseMenu.Popup className={styles['ming-dropdown-menu__popup']}>
             {items.map((item) => (
               <BaseMenu.Item
                 className={cn(
-                  'ming-dropdown-menu__item',
-                  item.separatorBefore && 'ming-dropdown-menu__item--separated',
-                  item.tone === 'destructive' && 'ming-dropdown-menu__item--destructive',
+                  styles['ming-dropdown-menu__item'],
+                  item.separatorBefore && styles['ming-dropdown-menu__item--separated'],
+                  item.tone === 'destructive' && styles['ming-dropdown-menu__item--destructive'],
                 )}
                 disabled={item.disabled}
                 key={item.id}

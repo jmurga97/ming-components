@@ -14,7 +14,9 @@ bun run dev
 bun run lint
 bun run check
 bun run test
+bun run test:storybook
 bun run build
+bun run build-storybook
 bun run package:check
 ```
 
@@ -41,6 +43,6 @@ bun run package:check
 
 - Do not weaken or rewrite ESLint rules to make code pass.
 - Treat semantic HTML, accessible names, keyboard operation, focus visibility/restoration, and reduced motion as functional requirements.
-- Every new component requires a working playground example and tests proportional to its state and interaction surface.
+- Every component requires a working Storybook story and tests proportional to its state and interaction surface. Use the local Storybook MCP tools when available to inspect component props, stories, and test results before changing UI components.
 - Test public behavior and callback payloads. Add accessibility checks for rendered primitives and composite states.
 - Run lint, check, test, build, and package:check before handoff.

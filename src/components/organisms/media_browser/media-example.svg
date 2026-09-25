@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400">
+  <title>Media preview placeholder</title>
+  <rect width="640" height="400" fill="#e8e8e8" />
+  <rect x="84" y="62" width="472" height="276" rx="8" fill="#fff" />
+  <circle cx="320" cy="200" r="74" fill="#c4151d" />
+  <path d="M320 130v140M250 200h140" stroke="#fff" stroke-width="12" />
+</svg>

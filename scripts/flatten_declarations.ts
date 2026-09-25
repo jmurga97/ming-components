@@ -18,7 +18,9 @@ for (const fileName of readdirSync(distEntries)) {
     const contents = readFileSync(source, 'utf8');
     writeFileSync(source, rewriteSpecifierDepth(contents));
   } else if (fileName.endsWith('.d.ts.map')) {
-    const map = JSON.parse(readFileSync(source, 'utf8')) as { sources: string[] };
+    const map = JSON.parse(readFileSync(source, 'utf8')) as {
+      sources: string[];
+    };
     map.sources = map.sources.map((path) => (path.startsWith('../') ? `../${path}` : path));
     writeFileSync(source, `${JSON.stringify(map)}\n`);
   }

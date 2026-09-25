@@ -1,3 +1,4 @@
+import styles from './input.module.css';
 import { Input as BaseInput } from '@base-ui/react/input';
 
 import { cn } from '../../../lib/cn';
@@ -16,7 +17,7 @@ export function Input({
   return (
     <BaseInput
       aria-invalid={ariaInvalid ?? (invalid || undefined)}
-      className={cn('ming-input', className)}
+      className={cn(styles['ming-input'], className)}
       {...props}
     />
   );

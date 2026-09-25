@@ -1,3 +1,4 @@
+import styles from './confirm_action.module.css';
 import { AlertDialog } from '@base-ui/react/alert-dialog';
 
 import { Button } from '../../atoms/button';
@@ -43,18 +44,20 @@ export function ConfirmAction({
       }}
       open={open}
     >
-      <AlertDialog.Portal className="ming-portal" container={portalContainer}>
-        <AlertDialog.Backdrop className="ming-dialog__backdrop" />
-        <AlertDialog.Viewport className="ming-dialog__viewport">
+      <AlertDialog.Portal container={portalContainer}>
+        <AlertDialog.Backdrop className={styles['ming-confirm-action__backdrop']} />
+        <AlertDialog.Viewport className={styles['ming-confirm-action__viewport']}>
           <AlertDialog.Popup
-            className={cn('ming-dialog ming-confirm-action', className)}
+            className={cn(styles['ming-confirm-action'], className)}
             finalFocus={triggerRef}
           >
-            <AlertDialog.Title className="ming-dialog__title">{title}</AlertDialog.Title>
-            <AlertDialog.Description className="ming-dialog__description">
+            <AlertDialog.Title className={styles['ming-confirm-action__title']}>
+              {title}
+            </AlertDialog.Title>
+            <AlertDialog.Description className={styles['ming-confirm-action__description']}>
               {message}
             </AlertDialog.Description>
-            <div className="ming-dialog__actions">
+            <div className={styles['ming-confirm-action__actions']}>
               <AlertDialog.Close
                 disabled={pending}
                 onClick={() => onCancel?.()}
