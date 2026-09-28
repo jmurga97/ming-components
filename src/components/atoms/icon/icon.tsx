@@ -1,3 +1,4 @@
+import { cn } from '../../../lib/cn';
 import styles from './icon.module.css';
 import type { ReactNode, SVGProps } from 'react';
 
@@ -11,13 +12,14 @@ export type IconProps = Omit<SVGProps<SVGSVGElement>, 'children'>;
 function IconBase({
   children,
   'aria-label': label,
+  className,
   ...props
 }: IconProps & { children: ReactNode }): React.JSX.Element {
   return (
     <svg
       aria-hidden={label === undefined ? true : undefined}
       aria-label={label}
-      className={styles['ming-icon']}
+      className={cn(styles['ming-icon'], className)}
       fill="currentColor"
       focusable="false"
       role="img"
@@ -295,6 +297,14 @@ export function CreditCardIcon(props: IconProps): React.JSX.Element {
       <path d="m22,5v-1H2v1h-1v14h1v1h20v-1h1V5h-1Zm-1,13H3v-7h18v7Zm0-10H3v-2h18v2Z" />
       <rect x="4" y="15" width="4" height="1" />
       <rect x="10" y="15" width="6" height="1" />
+    </IconBase>
+  );
+}
+// Drag handle; the library has none, so it is drawn on the same 24-unit grid.
+export function DragIcon(props: IconProps): React.JSX.Element {
+  return (
+    <IconBase {...props}>
+      <path d="M8 5h2v2H8zm6 0h2v2h-2zM8 11h2v2H8zm6 0h2v2h-2zM8 17h2v2H8zm6 0h2v2h-2z" />
     </IconBase>
   );
 }

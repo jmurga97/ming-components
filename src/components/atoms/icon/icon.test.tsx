@@ -20,6 +20,11 @@ describe('Icon', () => {
     expect(screen.getByRole('img', { name: 'Email' })).not.toHaveAttribute('aria-hidden');
   });
 
+  it('keeps its sizing class when given a className', () => {
+    const { container } = render(<icons.TrashIcon className="custom" />);
+    expect(container.querySelector('svg')?.getAttribute('class')).toMatch(/ming-icon.* custom/);
+  });
+
   it('fills the active sort direction', () => {
     const { container } = render(<icons.SortIcon direction="ascending" />);
     expect(container.querySelectorAll('polygon')).toHaveLength(1);
