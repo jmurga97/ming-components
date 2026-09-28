@@ -21,7 +21,7 @@ Quiet Operations es una interfaz administrativa sobria para registros, formulari
 | `--ring`                                    | foco visible                        |
 | `--radius`                                  | radio base, `0.4375rem`             |
 
-Tokens internos de escala: `--ming-space-1` a `--ming-space-6`, `--ming-duration-fast`, `--ming-duration-normal`, `--ming-ease`. La aplicación puede definir `--font-sans`; por defecto hereda.
+Tokens internos de escala: `--ming-space-1` a `--ming-space-6`, `--ming-duration-fast`, `--ming-duration-normal`, `--ming-ease` (hover/color), `--ming-ease-out` (entradas, salidas y press) y `--ming-ease-drawer` (paneles desde un borde). La aplicación puede definir `--font-sans`; por defecto hereda.
 
 ## Reglas visuales
 

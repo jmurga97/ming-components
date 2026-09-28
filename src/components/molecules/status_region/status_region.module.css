@@ -17,6 +17,19 @@
     --ming-button-foreground: var(--muted-foreground);
     --ming-button-hover-foreground: var(--foreground);
     --ming-button-hover-background: transparent;
+    transition:
+      opacity 300ms var(--ming-ease-out),
+      transform 300ms var(--ming-ease-out);
+    @starting-style {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+  .ming-status-region[data-ending-style] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(100%);
+    transition-duration: 200ms;
   }
   .ming-status-region::before {
     width: var(--ming-dot);
@@ -33,5 +46,15 @@
   .ming-status-region__content {
     display: grid;
     gap: var(--ming-space-1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ming-status-region {
+      @starting-style {
+        transform: none;
+      }
+    }
+    .ming-status-region[data-ending-style] {
+      transform: none;
+    }
   }
 }

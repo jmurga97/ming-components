@@ -1,5 +1,5 @@
 import styles from './status_region.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Button } from '../../atoms/button';
@@ -34,6 +34,10 @@ export function StatusRegion({
   tone = 'info',
 }: StatusRegionProps): React.JSX.Element | null {
   const [paused, setPaused] = useState(false);
+  // Stays mounted after `open` turns false so the exit transition can play.
+  const [mounted, setMounted] = useState(open);
+  const regionRef = useRef<HTMLDivElement>(null);
+  if (open && !mounted) setMounted(true);
 
   useEffect(() => {
     if (!open || !autoDismiss || paused) return;
@@ -47,10 +51,28 @@ export function StatusRegion({
     };
   }, [autoDismiss, onOpenChange, open, paused]);
 
-  if (!open || typeof document === 'undefined') return null;
+  useEffect(() => {
+    if (open || !mounted) return;
+    let cancelled = false;
+    const unmount = (): void => {
+      if (!cancelled) setMounted(false);
+    };
+    const animations = regionRef.current?.getAnimations?.() ?? [];
+    Promise.all(animations.map((animation) => animation.finished)).then(unmount, unmount);
+    return () => {
+      cancelled = true;
+    };
+  }, [mounted, open]);
+
+  if (!mounted || typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className={styles['ming-status-region']} data-ming-portal="status">
+    <div
+      className={styles['ming-status-region']}
+      data-ending-style={open ? undefined : ''}
+      data-ming-portal="status"
+      ref={regionRef}
+    >
       {/* biome-ignore lint/a11y/noStaticElementInteractions lint/a11y/noNoninteractiveElementInteractions: Pauses auto-dismiss while hovered or focused. */}
       <div
         className={cn(

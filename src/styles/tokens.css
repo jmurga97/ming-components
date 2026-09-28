@@ -56,6 +56,8 @@
     --ming-duration-fast: 150ms;
     --ming-duration-normal: 250ms;
     --ming-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ming-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ming-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   }
   .dark {
     color-scheme: dark;

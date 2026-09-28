@@ -23,13 +23,22 @@
     box-shadow: none;
     color: var(--popover-foreground);
     padding: var(--ming-space-5);
-    transition: opacity var(--ming-duration-normal) var(--ming-ease);
+    transition:
+      opacity 200ms var(--ming-ease-out),
+      transform 200ms var(--ming-ease-out);
   }
   .ming-confirm-action[data-starting-style],
   .ming-confirm-action[data-ending-style],
   .ming-confirm-action__backdrop[data-starting-style],
   .ming-confirm-action__backdrop[data-ending-style] {
     opacity: 0;
+  }
+  .ming-confirm-action[data-starting-style],
+  .ming-confirm-action[data-ending-style] {
+    transform: scale(0.97);
+  }
+  .ming-confirm-action[data-ending-style] {
+    transition-duration: var(--ming-duration-fast);
   }
   .ming-confirm-action__title {
     margin: 0;
@@ -52,9 +61,9 @@
     margin-block-start: var(--ming-space-6);
   }
   @media (prefers-reduced-motion: reduce) {
-    .ming-confirm-action,
-    .ming-confirm-action__backdrop {
-      transition-duration: 0.01ms;
+    .ming-confirm-action[data-starting-style],
+    .ming-confirm-action[data-ending-style] {
+      transform: none;
     }
   }
 }

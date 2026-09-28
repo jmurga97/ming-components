@@ -35,6 +35,9 @@
   .ming-select__indicator {
     --ming-icon-size: var(--ming-icon-sm);
   }
+  .ming-select__icon {
+    transition: transform var(--ming-duration-fast) var(--ming-ease-out);
+  }
   .ming-select {
     width: 100%;
   }
@@ -67,7 +70,10 @@
     box-shadow: none;
     color: var(--popover-foreground);
     padding: var(--ming-space-1);
-    transition: opacity var(--ming-duration-fast) var(--ming-ease);
+    transform-origin: var(--transform-origin);
+    transition:
+      opacity var(--ming-duration-fast) var(--ming-ease-out),
+      transform var(--ming-duration-fast) var(--ming-ease-out);
   }
   .ming-select__popup {
     max-height: min(20rem, var(--available-height));
@@ -78,6 +84,10 @@
   .ming-select__popup[data-starting-style],
   .ming-select__popup[data-ending-style] {
     opacity: 0;
+    transform: scale(0.96);
+  }
+  .ming-select__popup[data-ending-style] {
+    transition-duration: 100ms;
   }
   .ming-select__list {
     display: grid;
@@ -111,7 +121,11 @@
     opacity: 0.4;
   }
   @media (prefers-reduced-motion: reduce) {
-    .ming-select__popup {
+    .ming-select__popup[data-starting-style],
+    .ming-select__popup[data-ending-style] {
+      transform: none;
+    }
+    .ming-select__icon {
       transition-duration: 0.01ms;
     }
   }

@@ -64,14 +64,14 @@
     border-inline-end: 1px solid var(--input);
     background: var(--background);
     color: var(--foreground);
-    transition:
-      opacity var(--ming-duration-normal) var(--ming-ease),
-      transform var(--ming-duration-normal) var(--ming-ease);
+    transition: transform 300ms var(--ming-ease-drawer);
   }
   .ming-app-shell__mobile-navigation[data-starting-style],
   .ming-app-shell__mobile-navigation[data-ending-style] {
-    opacity: 0;
-    transform: translateX(-1rem);
+    transform: translateX(-100%);
+  }
+  .ming-app-shell__mobile-navigation[data-ending-style] {
+    transition-duration: 200ms;
   }
   .ming-app-shell__mobile-close-action {
     position: absolute;
@@ -104,9 +104,13 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .ming-app-shell__dialog-backdrop,
     .ming-app-shell__mobile-navigation {
-      transition-duration: 0.01ms;
+      transition: opacity var(--ming-duration-fast) var(--ming-ease-out);
+    }
+    .ming-app-shell__mobile-navigation[data-starting-style],
+    .ming-app-shell__mobile-navigation[data-ending-style] {
+      opacity: 0;
+      transform: none;
     }
   }
 }
