@@ -25,6 +25,7 @@ export const PACKAGE_ENTRIES: readonly PackageEntry[] = [
   { slug: 'button', module: 'components/atoms/button', tier: 'atoms' },
   { slug: 'checkbox', module: 'components/atoms/checkbox', tier: 'atoms' },
   { slug: 'field', module: 'components/atoms/field', tier: 'atoms' },
+  { slug: 'icon', module: 'components/atoms/icon', tier: 'atoms' },
   {
     slug: 'inline-message',
     module: 'components/atoms/inline_message',

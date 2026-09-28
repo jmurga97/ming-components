@@ -27,6 +27,14 @@ Base UI checkbox. Adds `label?: ReactNode` and accepts the root checkbox API inc
 optional props are `hint`, `error`, `invalid`, `disabled`, `required` and `optional`. Labels,
 descriptions and errors are associated through Base UI Field.
 
+### Icons
+
+`@jmurga97/components/icon` exports pixel icons from HackerNoon's Pixel Icon Library (MIT) as
+`<Name>Icon` components, e.g. `SearchIcon`, `MailIcon`, `UserPlusIcon`. They accept native SVG props,
+fill with `currentColor` and are drawn for 24px (`--ming-icon`); override with `--ming-icon-size`.
+Icons are `aria-hidden` unless given an `aria-label`. `SortIcon` takes
+`direction?: ascending | descending`. See the `Atoms/Icon` story for the full set.
+
 ### `Input`
 
 Base UI input with `invalid?: boolean`; native input/value props and `onValueChange` are forwarded.

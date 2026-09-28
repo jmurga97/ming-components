@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 
 import { Button } from '../../atoms/button';
 import { inlineMessageVariants } from '../../atoms/inline_message';
-import { CloseIcon } from '../../internal/icon';
+import { CloseIcon } from '../../atoms/icon';
 import { cn } from '../../../lib/cn';
 
 import type { VariantProps } from 'class-variance-authority';

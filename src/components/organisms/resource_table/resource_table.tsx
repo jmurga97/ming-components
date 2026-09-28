@@ -1,6 +1,6 @@
 import styles from './resource_table.module.css';
 import { cn } from '../../../lib/cn';
-import { SortIcon } from '../../internal/icon';
+import { SortIcon } from '../../atoms/icon';
 
 import type { Key, KeyboardEvent, MouseEvent, ReactNode } from 'react';
 

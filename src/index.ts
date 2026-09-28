@@ -3,6 +3,7 @@ export { Badge, badgeVariants } from './components/atoms/badge';
 export { Button } from './components/atoms/button';
 export { Checkbox } from './components/atoms/checkbox';
 export { Field } from './components/atoms/field';
+export * from './components/atoms/icon';
 export {
   InlineMessage,
   inlineMessageVariants,

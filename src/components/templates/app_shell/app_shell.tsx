@@ -3,7 +3,7 @@ import { Dialog } from '@base-ui/react/dialog';
 import { useEffect, useId, useRef, useState } from 'react';
 
 import { Button } from '../../atoms/button';
-import { CloseIcon, MenuIcon } from '../../internal/icon';
+import { CloseIcon, MenuIcon } from '../../atoms/icon';
 import { cn } from '../../../lib/cn';
 
 import type { ReactNode } from 'react';

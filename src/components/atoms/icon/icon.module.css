@@ -1,4 +1,4 @@
-/* The 24-unit pixel grid stays crisp only at 12px and 24px. */
+/* The 24-unit, 1-unit-pixel grid is only pixel-exact at 24px; 12px renders softer. */
 .ming-icon {
   display: inline-block;
   width: var(--ming-icon-size, var(--ming-icon));

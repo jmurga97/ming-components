@@ -3,7 +3,7 @@ import { useMemo, useRef, useState } from 'react';
 
 import { cn } from '../../../lib/cn';
 import { Input } from '../../atoms/input';
-import { CheckIcon, PlusIcon } from '../../internal/icon';
+import { CheckIcon, PlusIcon } from '../../atoms/icon';
 
 export interface TagPickerOption {
   disabled?: boolean;

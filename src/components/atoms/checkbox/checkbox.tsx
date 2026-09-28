@@ -1,7 +1,7 @@
 import styles from './checkbox.module.css';
 import { Checkbox as BaseCheckbox } from '@base-ui/react/checkbox';
 
-import { CheckIcon } from '../../internal/icon';
+import { CheckIcon } from '../icon';
 import { cn } from '../../../lib/cn';
 
 export interface CheckboxProps extends Omit<BaseCheckbox.Root.Props, 'className'> {

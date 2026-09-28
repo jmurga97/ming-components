@@ -51,6 +51,10 @@
       "types": "./dist/field.d.ts",
       "import": "./dist/field.js"
     },
+    "./icon": {
+      "types": "./dist/icon.d.ts",
+      "import": "./dist/icon.js"
+    },
     "./form-field": {
       "types": "./dist/form_field.d.ts",
       "import": "./dist/form_field.js"

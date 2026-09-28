@@ -1,7 +1,7 @@
 import styles from './search_field.module.css';
 import { Button } from '../../atoms/button';
 import { Input } from '../../atoms/input';
-import { CloseIcon } from '../../internal/icon';
+import { CloseIcon } from '../../atoms/icon';
 import { cn } from '../../../lib/cn';
 
 import type { InputProps } from '../../atoms/input';
