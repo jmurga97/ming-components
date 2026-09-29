@@ -13,4 +13,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  /* Lucide icons: sized by --ming-icon, overridable per context with --ming-icon-size. */
+  :where(svg.lucide) {
+    width: var(--ming-icon-size, var(--ming-icon));
+    height: var(--ming-icon-size, var(--ming-icon));
+    flex: none;
+    vertical-align: middle;
+  }
 }

@@ -3,7 +3,7 @@ import { Dialog } from '@base-ui/react/dialog';
 import { useEffect, useId, useRef, useState } from 'react';
 
 import { Button } from '../../atoms/button';
-import { CloseIcon, MenuIcon } from '../../atoms/icon';
+import { MenuIcon, XIcon } from 'lucide-react';
 import { cn } from '../../../lib/cn';
 
 import type { ReactNode } from 'react';
@@ -112,7 +112,7 @@ export function AppShell({
                     aria-label={closeNavigationLabel}
                     render={<Button iconOnly size="sm" variant="ghost" />}
                   >
-                    <CloseIcon />
+                    <XIcon />
                   </Dialog.Close>
                 </div>
                 {navigation}

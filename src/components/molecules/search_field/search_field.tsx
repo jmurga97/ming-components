@@ -1,7 +1,7 @@
 import styles from './search_field.module.css';
 import { Button } from '../../atoms/button';
 import { Input } from '../../atoms/input';
-import { CloseIcon } from '../../atoms/icon';
+import { XIcon } from 'lucide-react';
 import { cn } from '../../../lib/cn';
 
 import type { InputProps } from '../../atoms/input';
@@ -46,7 +46,7 @@ export function SearchField({
             size="sm"
             variant="ghost"
           >
-            <CloseIcon />
+            <XIcon />
           </Button>
         </span>
       ) : null}

@@ -1,7 +1,7 @@
 import styles from './select.module.css';
 import { Select as BaseSelect } from '@base-ui/react/select';
 
-import { CheckIcon, ChevronDownIcon } from '../icon';
+import { CheckIcon, ChevronDownIcon } from 'lucide-react';
 import { cn } from '../../../lib/cn';
 
 import { useId } from 'react';

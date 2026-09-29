@@ -29,11 +29,9 @@ descriptions and errors are associated through Base UI Field.
 
 ### Icons
 
-`@jmurga97/components/icon` exports pixel icons from HackerNoon's Pixel Icon Library (MIT) as
-`<Name>Icon` components, e.g. `SearchIcon`, `MailIcon`, `UserPlusIcon`. They accept native SVG props,
-fill with `currentColor` and are drawn for 24px (`--ming-icon`); override with `--ming-icon-size`.
-Icons are `aria-hidden` unless given an `aria-label`. `SortIcon` takes
-`direction?: ascending | descending`. See the `Atoms/Icon` story for the full set.
+Ming does not ship icons. Use [Lucide](https://lucide.dev/icons/) (`lucide-react`) directly, e.g.
+`import { SearchIcon } from 'lucide-react'`. Rendered Lucide icons are sized by `--ming-icon` (16px);
+override per context with `--ming-icon-size`. Pass `aria-hidden` or an `aria-label` as needed.
 
 ### `Input`
 

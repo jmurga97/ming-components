@@ -2,7 +2,7 @@
   /*
  * Ming — an instrument panel in a dark room, a printed technical manual in daylight.
  * Monochrome ink on paper, Geist Sans for reading, Geist Mono for every control and label,
- * pixel icons, and one red signal dot that only ever means "here" or "look now".
+ * Lucide line icons, and one red signal dot that only ever means "here" or "look now".
  */ :root,
   .light {
     color-scheme: light;
@@ -49,7 +49,7 @@
     --ming-space-5: 1.5rem;
     --ming-space-6: 2rem;
     --ming-space-7: 2.5rem;
-    --ming-icon: 24px;
+    --ming-icon: 16px;
     --ming-icon-sm: 12px;
     --ming-dot: 6px;
     --ming-rail: 2px;

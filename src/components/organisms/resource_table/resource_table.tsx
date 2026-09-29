@@ -1,6 +1,6 @@
 import styles from './resource_table.module.css';
 import { cn } from '../../../lib/cn';
-import { SortIcon } from '../../atoms/icon';
+import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from 'lucide-react';
 
 import type { Key, KeyboardEvent, MouseEvent, ReactNode } from 'react';
 
@@ -162,7 +162,7 @@ export function ResourceTable<Row>({
                     >
                       {column.header}
                       <span aria-hidden="true">
-                        <SortIcon direction={activeSort} />
+                        <SortGlyph direction={activeSort} />
                       </span>
                     </button>
                   ) : (
@@ -236,4 +236,10 @@ export function ResourceTable<Row>({
       </table>
     </div>
   );
+}
+
+function SortGlyph({ direction }: { direction?: ResourceTableSortDirection }): React.JSX.Element {
+  if (direction === 'ascending') return <ArrowUpIcon />;
+  if (direction === 'descending') return <ArrowDownIcon />;
+  return <ArrowUpDownIcon />;
 }

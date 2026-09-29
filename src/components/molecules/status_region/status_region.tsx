@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 
 import { Button } from '../../atoms/button';
 import { inlineMessageVariants } from '../../atoms/inline_message';
-import { CloseIcon } from '../../atoms/icon';
+import { XIcon } from 'lucide-react';
 import { cn } from '../../../lib/cn';
 
 import type { VariantProps } from 'class-variance-authority';
@@ -104,7 +104,7 @@ export function StatusRegion({
           size="sm"
           variant="ghost"
         >
-          <CloseIcon />
+          <XIcon />
         </Button>
       </div>
     </div>,

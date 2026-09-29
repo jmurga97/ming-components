@@ -53,6 +53,7 @@ export default defineConfig({
         /^react-dom(?:\/.*)?$/,
         'class-variance-authority',
         'clsx',
+        'lucide-react',
         'tailwind-merge',
       ],
       output: {
