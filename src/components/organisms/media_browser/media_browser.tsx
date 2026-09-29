@@ -13,6 +13,7 @@ export interface MediaBrowserProps {
   disabled?: boolean;
   emptyLabel?: string;
   items: MediaBrowserItem[];
+  thumbnailsLabel?: string;
   onValueChange?: (id: string) => void;
   selectedId?: string;
   showRail?: boolean;
@@ -23,6 +24,7 @@ export function MediaBrowser({
   disabled = false,
   emptyLabel = 'No media available.',
   items,
+  thumbnailsLabel = 'Media thumbnails',
   onValueChange,
   selectedId,
   showRail = true,
@@ -46,7 +48,7 @@ export function MediaBrowser({
         {selected.caption ? <figcaption>{selected.caption}</figcaption> : null}
       </figure>
       {showRail && items.length > 1 ? (
-        <ul aria-label="Media thumbnails" className={styles['ming-media-browser__rail']}>
+        <ul aria-label={thumbnailsLabel} className={styles['ming-media-browser__rail']}>
           {items.map((item) => (
             <li key={item.id}>
               <button

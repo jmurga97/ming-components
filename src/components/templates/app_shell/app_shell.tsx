@@ -13,9 +13,12 @@ export interface AppShellProps {
   className?: string;
   header: ReactNode;
   navigation: ReactNode;
+  closeNavigationLabel?: string;
+  hideNavigationLabel?: string;
   navigationLabel?: string;
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
+  showNavigationLabel?: string;
 }
 
 export function AppShell({
@@ -23,9 +26,12 @@ export function AppShell({
   className,
   header,
   navigation,
+  closeNavigationLabel = 'Close navigation',
+  hideNavigationLabel = 'Hide navigation',
   navigationLabel = 'Primary navigation',
   onOpenChange,
   open = true,
+  showNavigationLabel = 'Show navigation',
 }: AppShellProps): React.JSX.Element {
   const navigationId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +54,7 @@ export function AppShell({
     <Button
       aria-controls={navigationId}
       aria-expanded={open}
-      aria-label={open ? 'Hide navigation' : 'Show navigation'}
+      aria-label={open ? hideNavigationLabel : showNavigationLabel}
       iconOnly
       onClick={() => {
         onOpenChange(!open);
@@ -103,7 +109,7 @@ export function AppShell({
                 </Dialog.Title>
                 <div className={styles['ming-app-shell__mobile-close-action']}>
                   <Dialog.Close
-                    aria-label="Close navigation"
+                    aria-label={closeNavigationLabel}
                     render={<Button iconOnly size="sm" variant="ghost" />}
                   >
                     <CloseIcon />

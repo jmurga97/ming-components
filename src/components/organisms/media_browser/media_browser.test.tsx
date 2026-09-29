@@ -76,6 +76,12 @@ describe('MediaBrowser', () => {
     expect(screen.getAllByRole('listitem')).toHaveLength(2);
   });
 
+  it('uses the provided thumbnails list label', () => {
+    render(<MediaBrowser items={ITEMS} thumbnailsLabel="Miniaturas multimedia" />);
+
+    expect(screen.getByRole('list', { name: 'Miniaturas multimedia' })).toBeInTheDocument();
+  });
+
   it('renders captions under the figure', () => {
     render(
       <MediaBrowser

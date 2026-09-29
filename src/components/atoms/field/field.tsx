@@ -13,6 +13,7 @@ export interface FieldProps extends Omit<ComponentPropsWithoutRef<'div'>, 'child
   invalid?: boolean;
   label: ReactNode;
   optional?: boolean;
+  optionalLabel?: string;
   required?: boolean;
 }
 
@@ -25,6 +26,7 @@ export function Field({
   invalid = false,
   label,
   optional = false,
+  optionalLabel = 'Optional',
   required = false,
   ...props
 }: FieldProps): React.JSX.Element {
@@ -40,7 +42,7 @@ export function Field({
         <span>{label}</span>
         {required ? <span aria-hidden="true"> *</span> : null}
         {optional && !required ? (
-          <span className={styles['ming-field__optional']}>Optional</span>
+          <span className={styles['ming-field__optional']}>{optionalLabel}</span>
         ) : null}
       </BaseField.Label>
       {children}

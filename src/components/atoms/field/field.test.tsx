@@ -44,12 +44,12 @@ describe('Field', () => {
 
   it('labels optional fields without the asterisk', () => {
     render(
-      <Field label="Description" optional>
+      <Field label="Description" optional optionalLabel="Opcional">
         <Input />
       </Field>,
     );
 
-    expect(screen.getByText('Optional')).toBeInTheDocument();
+    expect(screen.getByText('Opcional')).toBeInTheDocument();
     expect(screen.queryByText('*')).not.toBeInTheDocument();
   });
 

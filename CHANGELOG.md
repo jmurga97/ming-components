@@ -2,6 +2,13 @@
 
 All notable changes follow Semantic Versioning.
 
+## 2.0.3 - 2026-09-28
+
+- Allow apps to localize AppShell navigation labels, optional Field text, MediaBrowser thumbnails,
+  and ResourceTable refresh announcements.
+- Fix Select options wrapping word-by-word, keep the trigger value on one line with an ellipsis,
+  shrink the chevron to the small icon size, and cap the popup at 20rem so it sizes to its content.
+
 ## 1.0.5 - 2026-09-08
 
 - Label the Select listbox with its trigger so open popups pass `aria-input-field-name` axe checks.

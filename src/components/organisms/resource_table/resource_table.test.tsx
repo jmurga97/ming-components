@@ -135,4 +135,19 @@ describe('ResourceTable', () => {
     );
     expect(screen.getByText('Could not load')).toBeVisible();
   });
+
+  it('uses the provided refetch announcement', () => {
+    render(
+      <ResourceTable
+        ariaLabel="Resources"
+        columns={columns}
+        getRowId={(row) => row.id}
+        refetching
+        refetchingLabel="Actualizando recursos"
+        rows={rows}
+      />,
+    );
+
+    expect(screen.getByText('Actualizando recursos')).toBeInTheDocument();
+  });
 });

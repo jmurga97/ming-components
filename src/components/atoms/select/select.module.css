@@ -32,6 +32,7 @@
     justify-content: center;
     flex: 0 0 auto;
   }
+  .ming-select__icon,
   .ming-select__indicator {
     --ming-icon-size: var(--ming-icon-sm);
   }
@@ -49,6 +50,13 @@
     padding-inline-end: var(--ming-space-2);
     text-align: start;
   }
+  /* The value stays on one line; long labels truncate instead of growing the trigger. */
+  .ming-select__trigger > :first-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   .ming-select__trigger[data-placeholder] {
     color: var(--muted-foreground);
   }
@@ -60,7 +68,7 @@
   }
   .ming-select__positioner {
     min-width: var(--anchor-width);
-    max-width: var(--available-width);
+    max-width: min(20rem, var(--available-width));
   }
   .ming-select__popup {
     overflow-y: auto;
@@ -110,6 +118,10 @@
     display: grid;
     grid-template-columns: var(--ming-icon-sm) 1fr;
     gap: var(--ming-space-3);
+  }
+  /* Base UI only mounts the indicator on the selected item, so pin the text to the label column. */
+  .ming-select__item > :last-child {
+    grid-column: 2;
   }
   .ming-select__item[data-highlighted] {
     background: var(--secondary);

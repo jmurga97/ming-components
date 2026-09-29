@@ -59,6 +59,28 @@ describe('AppShell', () => {
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
 
+  it('uses caller-provided toggle labels', () => {
+    const props = {
+      closeNavigationLabel: 'Tancar navegació',
+      header: <h1>Dashboard</h1>,
+      hideNavigationLabel: 'Amagar navegació',
+      navigation: <a href="/">Overview</a>,
+      onOpenChange: vi.fn(),
+      showNavigationLabel: 'Mostrar navegació',
+    };
+    const { rerender } = render(<AppShell {...props}>Content</AppShell>);
+
+    expect(screen.getByRole('button', { name: 'Amagar navegació' })).toBeInTheDocument();
+
+    rerender(
+      <AppShell {...props} open={false}>
+        Content
+      </AppShell>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Mostrar navegació' })).toBeInTheDocument();
+  });
+
   it('keeps the aside mounted while open and removes it when closed', async () => {
     const user = userEvent.setup();
     const onOpenChange = vi.fn();
@@ -108,6 +130,23 @@ describe('AppShell', () => {
 
     afterEach(() => {
       matchMedia.restore();
+    });
+
+    it('uses the provided navigation title and close label', async () => {
+      render(
+        <AppShell
+          closeNavigationLabel="Tancar navegació"
+          header={<h1>Dashboard</h1>}
+          navigation={<a href="/">Overview</a>}
+          navigationLabel="Primary section"
+          onOpenChange={vi.fn()}
+        >
+          Content
+        </AppShell>,
+      );
+
+      expect(await screen.findByRole('dialog', { name: 'Primary section' })).toBeVisible();
+      expect(screen.getByRole('button', { name: 'Tancar navegació' })).toBeInTheDocument();
     });
 
     it('swaps the aside for a dialog and closes it through the callback', async () => {

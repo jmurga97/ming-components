@@ -40,6 +40,7 @@ export interface ResourceTableProps<Row> {
   onSelectionChange?: (selectedIds: Key[]) => void;
   onSortChange?: (sort: ResourceTableSort) => void;
   refetching?: boolean;
+  refetchingLabel?: string;
   renderRowActions?: (row: Row) => ReactNode;
   responsive?: 'scroll' | 'stacked';
   rows: Row[];
@@ -67,6 +68,7 @@ export function ResourceTable<Row>({
   onSelectionChange,
   onSortChange,
   refetching = false,
+  refetchingLabel = 'Updating resources',
   renderRowActions,
   responsive = 'scroll',
   rows,
@@ -119,7 +121,7 @@ export function ResourceTable<Row>({
       data-responsive={responsive}
     >
       {refetching ? (
-        <span className={styles['ming-resource-table__announcement']}>Updating resources</span>
+        <span className={styles['ming-resource-table__announcement']}>{refetchingLabel}</span>
       ) : null}
       <table aria-label={ariaLabel}>
         <thead>
